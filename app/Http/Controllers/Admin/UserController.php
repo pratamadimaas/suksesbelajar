@@ -43,7 +43,7 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role_id' => 2, // Menetapkan role 'siswa' dengan ID 2
+            'role_id' => 1, // Menetapkan role 'siswa' dengan ID 1
         ]);
 
         return redirect()->route('admin.users.index')->with('success', 'Pengguna berhasil ditambahkan.');
