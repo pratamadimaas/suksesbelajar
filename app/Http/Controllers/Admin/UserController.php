@@ -12,21 +12,20 @@ class UserController extends Controller
     /**
      * Tampilkan daftar pengguna
      */
-        public function index(Request $request)
-        {
+    public function index(Request $request)
+    {
         $search = $request->input('search');
 
         $users = \App\Models\User::query()
                 ->when($search, function ($query, $search) {
                     return $query->where('name', 'like', "%{$search}%")
-                                ->orWhere('email', 'like', "%{$search}%");
+                                 ->orWhere('email', 'like', "%{$search}%");
                 })
                 ->orderBy('name', 'asc')
                 ->paginate(10); // 10 data per halaman
 
         return view('admin.users.index', compact('users', 'search'));
-        }
-
+    }
 
     /**
      * Tampilkan form untuk menambah pengguna baru
@@ -37,24 +36,28 @@ class UserController extends Controller
     }
 
     /**
-     * Simpan pengguna baru ke database
+     * Simpan pengguna baru ke database dengan password otomatis
      */
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
         ]);
+
+        // Hitung jumlah pengguna yang ada untuk membuat password unik
+        $userCount = User::count() + 1;
+        $generatedPassword = 'password' . $userCount;
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make($generatedPassword),
             'role_id' => 2, // Menetapkan role 'siswa' dengan ID 2
         ]);
 
-        return redirect()->route('admin.users.index')->with('success', 'Pengguna berhasil ditambahkan.');
+        // Arahkan kembali dengan pesan sukses yang menyertakan password
+        return redirect()->route('admin.users.index')->with('success', 'Pengguna berhasil ditambahkan. Password default: "' . $generatedPassword . '".');
     }
 
     /**
