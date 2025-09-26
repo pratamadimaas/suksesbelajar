@@ -7,10 +7,30 @@ use App\Models\Soal;
 
 class SoalController extends Controller
 {
-    public function index()
+    /**
+     * Display a listing of the resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
     {
-        $soals = Soal::orderBy('created_at', 'desc')->paginate(10);
-        return view('admin.soal.index', compact('soals'));
+        // Get the search query from the request
+        $search = $request->query('search');
+
+        // Start the query builder
+        $query = Soal::orderBy('created_at', 'desc');
+
+        // If a search term exists, add a where clause to filter the results
+        if ($search) {
+            $query->where('pertanyaan', 'LIKE', "%{$search}%")
+                  ->orWhere('kategori', 'LIKE', "%{$search}%");
+        }
+
+        // Paginate the results and append the search query to the links
+        $soals = $query->paginate(10)->withQueryString();
+
+        return view('admin.soal.index', compact('soals', 'search'));
     }
 
     public function create()
