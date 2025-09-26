@@ -505,78 +505,76 @@
                             </ul>
                         </div>
                         <div class="card-footer bg-white border-0">
-                            <a href="#" class="btn btn-outline-primary w-100">Mulai Gratis</a>
-                        </div>
-                    </div>
-                </div>
+    <a href="https://wa.me/6283879373233" class="btn btn-outline-primary w-100">Mulai Gratis</a>
+</div>
+</div>
+</div>
 
-                <!-- Paket Standard -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="card card-paket">
-                        <div class="card-header text-center">
-                            <h4 class="fw-bold mb-2">Paket Standard</h4>
-                            <div class="pricing-badge mb-3">Populer</div>
-                            <p class="mb-0">Persiapan menyeluruh</p>
-                        </div>
-                        <div class="card-body p-4">
-                            <ul class="list-unstyled">
-                                <li class="d-flex align-items-center mb-3">
-                                    <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                    <span>500 Soal Latihan</span>
-                                </li>
-                                <li class="d-flex align-items-center mb-3">
-                                    <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                    <span>15 Tryout Lengkap</span>
-                                </li>
-                                <li class="d-flex align-items-center mb-3">
-                                    <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                    <span>Analisis Detail</span>
-                                </li>
-                                <li class="d-flex align-items-center mb-3">
-                                    <i class="bi bi-clock-fill text-info me-2"></i>
-                                    <span>90 menit per sesi</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="card-footer bg-white border-0">
-                            <a href="#" class="btn btn-primary w-100">Pilih Paket</a>
-                        </div>
-                    </div>
-                </div>
+<div class="col-lg-4 col-md-6">
+    <div class="card card-paket">
+        <div class="card-header text-center">
+            <h4 class="fw-bold mb-2">Paket Standard</h4>
+            <div class="pricing-badge mb-3">Populer</div>
+            <p class="mb-0">Persiapan menyeluruh</p>
+        </div>
+        <div class="card-body p-4">
+            <ul class="list-unstyled">
+                <li class="d-flex align-items-center mb-3">
+                    <i class="bi bi-check-circle-fill text-success me-2"></i>
+                    <span>500 Soal Latihan</span>
+                </li>
+                <li class="d-flex align-items-center mb-3">
+                    <i class="bi bi-check-circle-fill text-success me-2"></i>
+                    <span>15 Tryout Lengkap</span>
+                </li>
+                <li class="d-flex align-items-center mb-3">
+                    <i class="bi bi-check-circle-fill text-success me-2"></i>
+                    <span>Analisis Detail</span>
+                </li>
+                <li class="d-flex align-items-center mb-3">
+                    <i class="bi bi-clock-fill text-info me-2"></i>
+                    <span>90 menit per sesi</span>
+                </li>
+            </ul>
+        </div>
+        <div class="card-footer bg-white border-0">
+            <a href="https://wa.me/6283879373233" class="btn btn-primary w-100">Pilih Paket</a>
+        </div>
+    </div>
+</div>
 
-                <!-- Paket Premium -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="card card-paket">
-                        <div class="card-header text-center">
-                            <h4 class="fw-bold mb-2">Paket Premium</h4>
-                            <div class="pricing-badge mb-3">Terbaik</div>
-                            <p class="mb-0">Persiapan maksimal</p>
-                        </div>
-                        <div class="card-body p-4">
-                            <ul class="list-unstyled">
-                                <li class="d-flex align-items-center mb-3">
-                                    <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                    <span>1000+ Soal Latihan</span>
-                                </li>
-                                <li class="d-flex align-items-center mb-3">
-                                    <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                    <span>30 Tryout Lengkap</span>
-                                </li>
-                                <li class="d-flex align-items-center mb-3">
-                                    <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                    <span>Mentoring 1-on-1</span>
-                                </li>
-                                <li class="d-flex align-items-center mb-3">
-                                    <i class="bi bi-clock-fill text-info me-2"></i>
-                                    <span>120 menit per sesi</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="card-footer bg-white border-0">
-                            <a href="#" class="btn btn-primary w-100">Pilih Premium</a>
-                        </div>
-                    </div>
-                </div>
+<div class="col-lg-4 col-md-6">
+    <div class="card card-paket">
+        <div class="card-header text-center">
+            <h4 class="fw-bold mb-2">Paket Premium</h4>
+            <div class="pricing-badge mb-3">Terbaik</div>
+            <p class="mb-0">Persiapan maksimal</p>
+        </div>
+        <div class="card-body p-4">
+            <ul class="list-unstyled">
+                <li class="d-flex align-items-center mb-3">
+                    <i class="bi bi-check-circle-fill text-success me-2"></i>
+                    <span>1000+ Soal Latihan</span>
+                </li>
+                <li class="d-flex align-items-center mb-3">
+                    <i class="bi bi-check-circle-fill text-success me-2"></i>
+                    <span>30 Tryout Lengkap</span>
+                </li>
+                <li class="d-flex align-items-center mb-3">
+                    <i class="bi bi-check-circle-fill text-success me-2"></i>
+                    <span>Mentoring 1-on-1</span>
+                </li>
+                <li class="d-flex align-items-center mb-3">
+                    <i class="bi bi-clock-fill text-info me-2"></i>
+                    <span>120 menit per sesi</span>
+                </li>
+            </ul>
+        </div>
+        <div class="card-footer bg-white border-0">
+            <a href="https://wa.me/6283879373233" class="btn btn-primary w-100">Pilih Premium</a>
+        </div>
+    </div>
+        </div>
             </div>
         </div>
     </section>
@@ -715,4 +713,122 @@
                         <ul class="list-unstyled">
                             <li><a href="#">Tentang Kami</a></li>
                             <li><a href="#">Karir</a></li>
-                            <li><a href
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Kontak</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <div class="footer-section">
+                        <h5>Bantuan</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Panduan</a></li>
+                            <li><a href="#">Support</a></li>
+                            <li><a href="#">Kebijakan</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <div class="footer-section">
+                        <h5>Kontak</h5>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-telephone me-2"></i>+62 812 3456 7890</li>
+                            <li><i class="bi bi-envelope me-2"></i>info@masukcpns.com</li>
+                            <li><i class="bi bi-geo-alt me-2"></i>Jakarta, Indonesia</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <hr class="my-4">
+            
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2024 Masuk CPNS. Hak cipta dilindungi undang-undang.</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <a href="#" class="me-3">Syarat & Ketentuan</a>
+                    <a href="#">Kebijakan Privasi</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80; // Account for fixed navbar
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Handle logout functionality
+        function handleLogout(event) {
+            event.preventDefault();
+            
+            // Show confirmation dialog
+            if (confirm('Apakah Anda yakin ingin logout?')) {
+                // Show loading state
+                const logoutLink = event.target;
+                const originalText = logoutLink.innerHTML;
+                logoutLink.innerHTML = '<i class="bi bi-arrow-repeat spin me-2"></i>Logging out...';
+                logoutLink.style.pointerEvents = 'none';
+                
+                // Simulate logout process (replace with actual logout logic)
+                setTimeout(() => {
+                    alert('Logout berhasil! Anda akan diarahkan ke halaman login.');
+                    window.location.href = '#login';
+                }, 1500);
+            }
+        }
+
+        // Add spinning animation for loading states
+        const style = document.createElement('style');
+        style.textContent = `
+            .spin {
+                animation: spin 1s linear infinite;
+            }
+            
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Add navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.backdropFilter = 'blur(10px)';
+            } else {
+                navbar.style.backgroundColor = '#ffffff';
+                navbar.style.backdropFilter = 'none';
+            }
+        });
+
+
+        document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const navbarToggler = document.querySelector('.navbar-toggler');
+                const navbarCollapse = document.querySelector('#navbarNav');
+                
+                if (window.innerWidth < 992 && navbarCollapse.classList.contains('show')) {
+                    navbarToggler.click();
+                }
+            });
