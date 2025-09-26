@@ -63,9 +63,6 @@ border-left: 5px solid #00acc1;
 <div class="container">
 <h1>Riwayat Ujian Anda</h1>
 <p class="lead">Ini adalah daftar ujian yang sudah Anda ikuti.</p>
-<div class="mb-3">
-<a href="{{ route('siswa.profile') }}" class="btn btn-primary">Ubah Password</a>
-</div>
 <div class="table-responsive">
 <table class="table table-striped">
 <thead>
