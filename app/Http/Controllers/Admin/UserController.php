@@ -43,10 +43,8 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role_id' => 2, // Menetapkan role 'siswa' dengan ID 2
         ]);
-
-        // Berikan role 'siswa' secara default
-        $user->assignRole('siswa');
 
         return redirect()->route('admin.users.index')->with('success', 'Pengguna berhasil ditambahkan.');
     }
@@ -73,9 +71,9 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
-    $user->delete();
+        $user->delete();
 
-    return redirect()->route('admin.users.index')
-        ->with('success', 'Pengguna berhasil dihapus.');
+        return redirect()->route('admin.users.index')
+            ->with('success', 'Pengguna berhasil dihapus.');
     }
 }
