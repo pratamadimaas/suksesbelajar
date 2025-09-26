@@ -12,13 +12,21 @@ class UserController extends Controller
     /**
      * Tampilkan daftar pengguna
      */
-    public function index()
-    {
-        // Ambil semua pengguna dari database
-        $users = User::all();
+        public function index(Request $request)
+        {
+        $search = $request->input('search');
 
-        return view('admin.users.index', compact('users'));
-    }
+        $users = \App\Models\User::query()
+                ->when($search, function ($query, $search) {
+                    return $query->where('name', 'like', "%{$search}%")
+                                ->orWhere('email', 'like', "%{$search}%");
+                })
+                ->orderBy('name', 'asc')
+                ->paginate(10); // 10 data per halaman
+
+        return view('admin.users.index', compact('users', 'search'));
+        }
+
 
     /**
      * Tampilkan form untuk menambah pengguna baru
@@ -43,7 +51,7 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role_id' => 1, // Menetapkan role 'siswa' dengan ID 1
+            'role_id' => 2, // Menetapkan role 'siswa' dengan ID 2
         ]);
 
         return redirect()->route('admin.users.index')->with('success', 'Pengguna berhasil ditambahkan.');
