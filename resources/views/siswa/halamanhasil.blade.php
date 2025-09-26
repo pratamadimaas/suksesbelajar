@@ -147,7 +147,7 @@
         @foreach($ujian->ujianJawabans as $index => $jawaban)
             @php
                 $soal = $jawaban->soal;
-                $isCorrect = $jawaban->jawaban_siswa === $soal->kunci_jawaban;
+                $isCorrect = $jawaban->jawaban === $soal->kunci_jawaban;
             @endphp
             <div class="question-card">
                 <div class="d-flex justify-content-between align-items-center">
@@ -160,7 +160,7 @@
                 <div class="mb-3">
                     <p>Jawaban Anda:
                         <span class="{{ $isCorrect ? 'correct-answer' : 'wrong-answer' }}">
-                            {{ $jawaban->jawaban_siswa }}
+                            {{ $jawaban->jawaban }}
                         </span>
                     </p>
                     <p>Kunci Jawaban:
