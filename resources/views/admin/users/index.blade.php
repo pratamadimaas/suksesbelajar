@@ -10,12 +10,10 @@
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
                 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
-
 .table {
     margin-bottom: 0;
     background-color: #ffffff;
 }
-
 .table thead th {
     background-color: #f8f9fa;
     color: #495057;
@@ -23,18 +21,15 @@
     border-bottom: 2px solid #e9ecef;
     padding: 1rem;
 }
-
 .table tbody tr:hover {
     background-color: #f0f2f5;
     transition: background-color 0.2s ease;
 }
-
 .table tbody td {
     padding: 1rem;
     vertical-align: middle;
     border-top: 1px solid #e9ecef;
 }
-
 .action-btn {
     font-size: 0.875rem;
     padding: 0.5rem 1rem;
@@ -43,7 +38,6 @@
     text-transform: uppercase;
     font-weight: 600;
 }
-
 .action-btn:hover {
     opacity: 0.8;
 }
@@ -55,12 +49,24 @@
     <div class="col-12">
         <div class="card shadow-sm rounded-lg border-0">
             <div class="card-body p-4">
+
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h4 class="card-title m-0">Daftar Pengguna</h4>
                     <a href="{{ route('admin.users.create') }}" class="btn btn-primary action-btn">
                         <i class="bi bi-plus-circle-fill me-1"></i> Tambah Pengguna
                     </a>
                 </div>
+
+                {{-- Form Search --}}
+                <form method="GET" action="{{ route('admin.users.index') }}" class="mb-3">
+                    <div class="input-group">
+                        <input type="text" name="search" class="form-control" placeholder="Cari nama atau email..."
+                               value="{{ request('search') }}">
+                        <button class="btn btn-outline-secondary" type="submit">
+                            <i class="bi bi-search"></i> Cari
+                        </button>
+                    </div>
+                </form>
 
                 <div class="table-responsive">
                     <table class="table table-hover">
@@ -72,7 +78,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($users as $user)
+                            @forelse ($users as $user)
                                 <tr>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
@@ -95,9 +101,18 @@
                                         </form>
                                     </td>
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="3" class="text-center">Tidak ada pengguna ditemukan.</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
+                </div>
+
+                {{-- Pagination --}}
+                <div class="mt-3">
+                    {{ $users->withQueryString()->links() }}
                 </div>
 
             </div>
