@@ -130,29 +130,6 @@
             font-size: 2rem;
         }
 
-        .stats-section {
-            background: linear-gradient(135deg, #f9fafb 0%, #e5e7eb 100%);
-            padding: 80px 0;
-        }
-
-        .stat-card {
-            text-align: center;
-            padding: 30px;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            color: #1e3a8a;
-            margin-bottom: 10px;
-        }
-
-        .stat-label {
-            color: #4b5563;
-            font-weight: 500;
-            font-size: 1.1rem;
-        }
-
         .testimonial-section {
             padding: 80px 0;
             background: white;
@@ -329,38 +306,6 @@
                 <div class="col-lg-6 text-center">
                     <div class="position-relative">
                         <i class="bi bi-mortarboard display-1" style="font-size: 12rem; opacity: 0.8;"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="stats-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="stat-card">
-                        <div class="stat-number">10,000+</div>
-                        <div class="stat-label">Siswa Aktif</div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="stat-card">
-                        <div class="stat-number">50,000+</div>
-                        <div class="stat-label">Bank Soal</div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="stat-card">
-                        <div class="stat-number">3</div>
-                        <div class="stat-label">Mentor Aktif</div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="stat-card">
-                        <div class="stat-number">24/7</div>
-                        <div class="stat-label">Akses Platform</div>
                     </div>
                 </div>
             </div>
