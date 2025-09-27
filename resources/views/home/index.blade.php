@@ -617,54 +617,95 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 mb-4">
-                    <div class="footer-section">
-                        <h5>
-                            <i class="bi bi-mortarboard-fill me-2"></i>
-                            Masuk CPNS
-                        </h5>
-                        <p>
-                            Platform pembelajaran online terdepan untuk persiapan tes CPNS 
-                            dengan sistem yang komprehensif dan terintegrasi.
-                        </p>
-                        <div class="social-links">
-                            <a href="#" class="me-3"><i class="bi bi-facebook fs-4"></i></a>
-                            <a href="#" class="me-3"><i class="bi bi-twitter fs-4"></i></a>
-                            <a href="#" class="me-3"><i class="bi bi-instagram fs-4"></i></a>
-                            <a href="#" class="me-3"><i class="bi bi-youtube fs-4"></i></a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-2 col-md-6 mb-4">
-                    <div class="footer-section">
-                        <h5>Layanan</h5>
-                        <ul class="list-unstyled">
-                            <li><a href="#">Tryout Online</a></li>
-                            <li><a href="#">Bank Soal</a></li>
-                            <li><a href="#">Mentoring</a></li>
-                            <li><a href="#">Analisis Hasil</a></li>
-                        </ul>
+<footer class="footer bg-light pt-5">
+    <div class="container">
+        <div class="row">
+            <!-- Logo & Deskripsi -->
+            <div class="col-lg-4 mb-4">
+                <div class="footer-section">
+                    <h5>
+                        <i class="bi bi-mortarboard-fill me-2"></i>
+                        Masuk CPNS
+                    </h5>
+                    <p>
+                        Platform pembelajaran online terdepan untuk persiapan tes CPNS 
+                        dengan sistem yang komprehensif dan terintegrasi.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="me-3"><i class="bi bi-facebook fs-4"></i></a>
+                        <a href="#" class="me-3"><i class="bi bi-twitter fs-4"></i></a>
+                        <a href="#" class="me-3"><i class="bi bi-instagram fs-4"></i></a>
+                        <a href="#" class="me-3"><i class="bi bi-youtube fs-4"></i></a>
                     </div>
                 </div>
             </div>
-            
-            <hr class="my-4">
-            
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <p class="mb-0">&copy; 2024 Masuk CPNS. Hak cipta dilindungi undang-undang.</p>
+
+            <!-- Layanan -->
+            <div class="col-lg-2 col-md-6 mb-4">
+                <div class="footer-section">
+                    <h5>Layanan</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Tryout Online</a></li>
+                        <li><a href="#">Bank Soal</a></li>
+                        <li><a href="#">Mentoring</a></li>
+                        <li><a href="#">Analisis Hasil</a></li>
+                    </ul>
                 </div>
-                <div class="col-md-6 text-end">
-                    <a href="#" class="me-3">Syarat & Ketentuan</a>
-                    <a href="#">Kebijakan Privasi</a>
+            </div>
+
+            <!-- Perusahaan -->
+            <div class="col-lg-2 col-md-6 mb-4">
+                <div class="footer-section">
+                    <h5>Perusahaan</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Tentang Kami</a></li>
+                        <li><a href="#">Karir</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Kontak</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bantuan -->
+            <div class="col-lg-2 col-md-6 mb-4">
+                <div class="footer-section">
+                    <h5>Bantuan</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Panduan</a></li>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Kebijakan</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Kontak -->
+            <div class="col-lg-2 col-md-6 mb-4">
+                <div class="footer-section">
+                    <h5>Kontak</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="bi bi-telephone me-2"></i>+62 812 3456 7890</li>
+                        <li><i class="bi bi-envelope me-2"></i>info@masukcpns.com</li>
+                        <li><i class="bi bi-geo-alt me-2"></i>Jakarta, Indonesia</li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </footer>
+
+        <hr class="my-4">
+
+        <!-- Bawah Footer -->
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <p class="mb-0">&copy; 2024 Masuk CPNS. Hak cipta dilindungi undang-undang.</p>
+            </div>
+            <div class="col-md-6 text-end">
+                <a href="#" class="me-3">Syarat & Ketentuan</a>
+                <a href="#">Kebijakan Privasi</a>
+            </div>
+        </div>
+    </div>
+</footer>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -742,40 +783,3 @@
             });
         });
     </script>
-</body>
-</html>
-                
-                <div class="col-lg-2 col-md-6 mb-4">
-                    <div class="footer-section">
-                        <h5>Perusahaan</h5>
-                        <ul class="list-unstyled">
-                            <li><a href="#">Tentang Kami</a></li>
-                            <li><a href="#">Karir</a></li>
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">Kontak</a></li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="col-lg-2 col-md-6 mb-4">
-                    <div class="footer-section">
-                        <h5>Bantuan</h5>
-                        <ul class="list-unstyled">
-                            <li><a href="#">FAQ</a></li>
-                            <li><a href="#">Panduan</a></li>
-                            <li><a href="#">Support</a></li>
-                            <li><a href="#">Kebijakan</a></li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="col-lg-2 col-md-6 mb-4">
-                    <div class="footer-section">
-                        <h5>Kontak</h5>
-                        <ul class="list-unstyled">
-                            <li><i class="bi bi-telephone me-2"></i>+62 812 3456 7890</li>
-                            <li><i class="bi bi-envelope me-2"></i>info@masukcpns.com</li>
-                            <li><i class="bi bi-geo-alt me-2"></i>Jakarta, Indonesia</li>
-                        </ul>
-                    </div>
-                </div>
