@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,13 +21,72 @@
         .admin-container {
             min-height: 100vh;
         }
+        
+        /* Mobile Header */
+        .mobile-header {
+            background-color: #1a202c;
+            color: white;
+            padding: 1rem;
+            display: none;
+        }
+        
+        /* Sidebar Styles */
         .sidebar {
-            background-color: #1a202c; /* A deep, professional dark blue/gray */
+            background-color: #1a202c;
             color: #e2e8f0;
             padding: 2rem 1.5rem;
             min-height: 100vh;
-            transition: width 0.3s ease;
+            transition: all 0.3s ease;
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 280px;
+            z-index: 1050;
         }
+        
+        .sidebar.show {
+            left: 0;
+        }
+        
+        /* Desktop Sidebar */
+        @media (min-width: 768px) {
+            .sidebar {
+                position: relative;
+                left: 0;
+                width: auto;
+            }
+            .mobile-header {
+                display: none !important;
+            }
+        }
+        
+        /* Mobile Styles */
+        @media (max-width: 767px) {
+            .mobile-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .main-content {
+                margin: 1rem;
+            }
+        }
+        
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1040;
+            display: none;
+        }
+        
+        .sidebar-overlay.show {
+            display: block;
+        }
+        
         .sidebar-header {
             border-bottom: 1px solid #2d3748;
             padding-bottom: 1.5rem;
@@ -48,7 +108,7 @@
             color: #fff;
         }
         .sidebar .nav-link.active {
-            background-color: #4c51bf; /* A vibrant, modern blue for active state */
+            background-color: #4c51bf;
             color: #fff;
             font-weight: 500;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -77,53 +137,97 @@
             margin-bottom: 1.5rem;
             border-radius: 0.5rem;
         }
+        
+        /* Close button for mobile sidebar */
+        .sidebar-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: #e2e8f0;
+            font-size: 1.5rem;
+            display: none;
+        }
+        
+        @media (max-width: 767px) {
+            .sidebar-close {
+                display: block;
+            }
+        }
+        
+        /* Hamburger menu button */
+        .menu-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+        }
     </style>
     
     @stack('styles')
 </head>
 <body>
+    <!-- Mobile Header -->
+    <div class="mobile-header d-md-none">
+        <div class="d-flex align-items-center">
+            <button class="menu-toggle me-3" type="button" onclick="toggleSidebar()">
+                <i class="bi bi-list"></i>
+            </button>
+            <h5 class="mb-0">Admin Bimbel</h5>
+        </div>
+        <small class="text-muted">{{ Auth::user()->name }}</small>
+    </div>
+    
+    <!-- Sidebar Overlay for Mobile -->
+    <div class="sidebar-overlay" onclick="closeSidebar()"></div>
+    
     <div class="container-fluid admin-container">
         <div class="row">
             <!-- Sidebar -->
-            <nav class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+            <nav class="col-md-3 col-lg-2 sidebar" id="sidebar">
+                <button class="sidebar-close" onclick="closeSidebar()">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+                
                 <div class="position-sticky pt-3">
                     <div class="sidebar-header text-center">
                         <h5 class="mb-1">Admin Bimbel</h5>
-                        <small class="text-muted">{{ Auth::user()->name }}</small>
+                        <small class="text-muted d-none d-md-block">{{ Auth::user()->name }}</small>
                     </div>
                     
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" 
-                               href="{{ route('admin.dashboard') }}">
+                               href="{{ route('admin.dashboard') }}" onclick="closeSidebar()">
                                 <i class="bi bi-speedometer2"></i>
                                 Dashboard
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('admin.users*') ? 'active' : '' }}" 
-                               href="{{ route('admin.users.index') }}">
+                               href="{{ route('admin.users.index') }}" onclick="closeSidebar()">
                                 <i class="bi bi-person-badge-fill"></i>
                                 Manajemen Pengguna
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('admin.soal*') ? 'active' : '' }}" 
-                               href="{{ route('admin.soal.index') }}">
+                               href="{{ route('admin.soal.index') }}" onclick="closeSidebar()">
                                 <i class="bi bi-question-circle"></i>
                                 Soal
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('admin.paket*') ? 'active' : '' }}" 
-                               href="{{ route('admin.paket.index') }}">
+                               href="{{ route('admin.paket.index') }}" onclick="closeSidebar()">
                                 <i class="bi bi-box"></i>
                                 Paket Ujian
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('admin.laporan*') ? 'active' : '' }}" 
-                               href="{{ route('admin.laporan.index') }}">
+                               href="{{ route('admin.laporan.index') }}" onclick="closeSidebar()">
                                 <i class="bi bi-bar-chart"></i>
                                 Laporan
                             </a>
@@ -179,8 +283,125 @@
     
     <script>
         axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        
+        // Mobile sidebar functions
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            
+            sidebar.classList.toggle('show');
+            overlay.classList.toggle('show');
+            
+            // Prevent body scroll when sidebar is open
+            if (sidebar.classList.contains('show')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+        
+        function closeSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            
+            sidebar.classList.remove('show');
+            overlay.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+        
+        // Close sidebar when window is resized to desktop size
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 768) {
+                closeSidebar();
+            }
+        });
+        
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (window.innerWidth < 768 && 
+                !sidebar.contains(event.target) && 
+                !menuToggle.contains(event.target) && 
+                sidebar.classList.contains('show')) {
+                closeSidebar();
+            }
+        });
     </script>
     
     @stack('scripts')
-</body>
-</html>
+    
+    <!-- Example Dashboard Content -->
+    <style>
+        .dashboard-card {
+            border-radius: 1rem;
+            padding: 1.5rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1rem;
+        }
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        }
+        .dashboard-card .card-icon {
+            font-size: 2.5rem;
+            margin-right: 1rem;
+            opacity: 0.8;
+        }
+        .dashboard-card .card-content {
+            text-align: right;
+        }
+        .dashboard-card .card-label {
+            margin: 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        .dashboard-card .card-value {
+            margin: 0;
+            font-size: 2.25rem;
+            font-weight: 600;
+        }
+        .primary-gradient {
+            background: linear-gradient(45deg, #007bff, #0056b3);
+        }
+        .success-gradient {
+            background: linear-gradient(45deg, #28a745, #1e7e34);
+        }
+        .warning-gradient {
+            background: linear-gradient(45deg, #ffc107, #d39e00);
+        }
+        .danger-gradient {
+            background: linear-gradient(45deg, #dc3545, #b82c39);
+        }
+        .g-4 {
+            --bs-gutter-x: 1.5rem;
+            --bs-gutter-y: 1.5rem;
+        }
+        
+        /* Mobile optimizations for dashboard cards */
+        @media (max-width: 767px) {
+            .dashboard-card {
+                padding: 1rem;
+                flex-direction: column;
+                text-align: center;
+            }
+            .dashboard-card .card-icon {
+                margin-right: 0;
+                margin-bottom: 0.5rem;
+                font-size: 2rem;
+            }
+            .dashboard-card .card-content {
+                text-align: center;
+            }
+            .dashboard-card .card-value {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
