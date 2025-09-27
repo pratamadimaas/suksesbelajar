@@ -2,25 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
-use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\UserCredentialsMail; // Menggunakan Mailable yang sama
+use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
     /**
-     * Tampilkan form login.
-     *
-     * @return \Illuminate\View\View
+     * Tampilkan formulir login.
      */
     public function showLoginForm()
     {
         return view('auth.login');
     }
 
+    /**
+     * Proses login pengguna.
+     */
     /**
      * Proses login pengguna.
      *
@@ -62,51 +66,52 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
+
     /**
      * Proses registrasi pengguna baru.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function register(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6|confirmed',
-            'phone' => 'nullable|string|max:15',
-            'birth_date' => 'nullable|date',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
         ]);
 
-        $siswaRole = Role::where('name', 'siswa')->firstOrFail();
+        $password_plaintext = $request->password; // Simpan password sebelum di-hash
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'phone' => $request->phone,
-            'birth_date' => $request->birth_date,
-            'role_id' => $siswaRole->id,
+            'password' => Hash::make($password_plaintext),
+            'role_id' => 1, // Secara default, pengguna yang mendaftar adalah 'siswa'
         ]);
 
+        // --- Logika Pengiriman Email ---
+        try {
+            // Kirim email ke pengguna, menggunakan password plaintext yang mereka masukkan
+            Mail::to($user->email)->send(new UserCredentialsMail($user, $password_plaintext));
+        } catch (\Exception $e) {
+            // Catat error jika pengiriman email gagal
+            Log::error('Gagal mengirim email kredensial saat registrasi mandiri: ' . $user->email . ' | Error: ' . $e->getMessage());
+        }
+        // ---------------------------------
+
+        // Login pengguna setelah registrasi
         Auth::login($user);
 
-        return redirect()->route('siswa.dashboard');
+        return redirect()->route('dashboard')->with('success', 'Akun berhasil didaftarkan. Detail login Anda telah dikirim ke email Anda.');
     }
 
     /**
-     * Logout pengguna.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * Proses logout pengguna.
      */
     public function logout(Request $request)
     {
         Auth::logout();
-
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('home');
+        return redirect('/')->with('success', 'Anda telah berhasil logout.');
     }
 }

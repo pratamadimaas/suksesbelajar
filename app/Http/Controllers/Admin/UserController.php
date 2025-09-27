@@ -6,18 +6,28 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\UserCredentialsMail;
+use Illuminate\Support\Facades\Log; // Tambahkan import Log
 
 class UserController extends Controller
 {
     /**
      * Tampilkan daftar pengguna
      */
-    public function index()
+    public function index(Request $request)
     {
-        // Ambil semua pengguna dari database
-        $users = User::all();
+        $search = $request->input('search');
 
-        return view('admin.users.index', compact('users'));
+        $users = \App\Models\User::query()
+                ->when($search, function ($query, $search) {
+                    return $query->where('name', 'like', "%{$search}%")
+                                 ->orWhere('email', 'like', "%{$search}%");
+                })
+                ->orderBy('name', 'asc')
+                ->paginate(10); // 10 data per halaman
+
+        return view('admin.users.index', compact('users', 'search'));
     }
 
     /**
@@ -29,26 +39,38 @@ class UserController extends Controller
     }
 
     /**
-     * Simpan pengguna baru ke database
+     * Simpan pengguna baru ke database dengan password otomatis
      */
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
         ]);
+
+        // Hitung jumlah pengguna yang ada untuk membuat password unik
+        $userCount = User::count() + 1;
+        $generatedPassword = 'password' . $userCount;
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make($generatedPassword),
+            'role_id' => 2, // Menetapkan role 'siswa' dengan ID 2
         ]);
 
-        // Berikan role 'siswa' secara default
-        $user->assignRole('siswa');
+        // --- Logika Pengiriman Email ---
+        try {
+            // Kirim email ke pengguna dengan detail login
+            Mail::to($user->email)->send(new UserCredentialsMail($user, $generatedPassword));
+        } catch (\Exception $e) {
+            // Catat error jika pengiriman email gagal
+            Log::error('Gagal mengirim email kredensial untuk pengguna baru: ' . $user->email . ' | Error: ' . $e->getMessage());
+        }
+        // ---------------------------------
 
-        return redirect()->route('admin.users.index')->with('success', 'Pengguna berhasil ditambahkan.');
+        // Arahkan kembali dengan pesan sukses yang menyertakan password
+        return redirect()->route('admin.users.index')->with('success', 'Pengguna berhasil ditambahkan dan email kredensial telah dikirim. Password default: "' . $generatedPassword . '".');
     }
 
     /**
@@ -73,9 +95,9 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
-    $user->delete();
+        $user->delete();
 
-    return redirect()->route('admin.users.index')
-        ->with('success', 'Pengguna berhasil dihapus.');
+        return redirect()->route('admin.users.index')
+            ->with('success', 'Pengguna berhasil dihapus.');
     }
 }
