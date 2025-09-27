@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Masuk CPNS - Bimbel Ujian Online</title>
+    <title>Masuk CPNS - Sistem Ujian Online</title>
     
     <!-- Google Fonts: Poppins for a modern, clean look -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -128,6 +128,29 @@
             margin: 0 auto 25px;
             color: white;
             font-size: 2rem;
+        }
+
+        .stats-section {
+            background: linear-gradient(135deg, #f9fafb 0%, #e5e7eb 100%);
+            padding: 80px 0;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #4b5563;
+            font-weight: 500;
+            font-size: 1.1rem;
         }
 
         .testimonial-section {
@@ -280,6 +303,7 @@
             </div>
         </div>
     </nav>
+    </nav>
 
     <!-- Hero Section -->
     <section id="beranda" class="hero-section">
@@ -305,6 +329,38 @@
                 <div class="col-lg-6 text-center">
                     <div class="position-relative">
                         <i class="bi bi-mortarboard display-1" style="font-size: 12rem; opacity: 0.8;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-card">
+                        <div class="stat-number">10,000+</div>
+                        <div class="stat-label">Siswa Aktif</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-card">
+                        <div class="stat-number">50,000+</div>
+                        <div class="stat-label">Bank Soal</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-card">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Mentor Aktif</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-card">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Akses Platform</div>
                     </div>
                 </div>
             </div>
@@ -449,76 +505,76 @@
                             </ul>
                         </div>
                         <div class="card-footer bg-white border-0">
-                            <a href="https://wa.me/6283879373233" class="btn btn-outline-primary w-100">Mulai Gratis</a>
-                        </div>
-                    </div>
-                </div>
+    <a href="https://wa.me/6283879373233" class="btn btn-outline-primary w-100">Mulai Gratis</a>
+</div>
+</div>
+</div>
 
-                <div class="col-lg-4 col-md-6">
-                    <div class="card card-paket">
-                        <div class="card-header text-center">
-                            <h4 class="fw-bold mb-2">Paket Standard</h4>
-                            <div class="pricing-badge mb-3">Populer</div>
-                            <p class="mb-0">Persiapan menyeluruh</p>
-                        </div>
-                        <div class="card-body p-4">
-                            <ul class="list-unstyled">
-                                <li class="d-flex align-items-center mb-3">
-                                    <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                    <span>500 Soal Latihan</span>
-                                </li>
-                                <li class="d-flex align-items-center mb-3">
-                                    <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                    <span>15 Tryout Lengkap</span>
-                                </li>
-                                <li class="d-flex align-items-center mb-3">
-                                    <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                    <span>Analisis Detail</span>
-                                </li>
-                                <li class="d-flex align-items-center mb-3">
-                                    <i class="bi bi-clock-fill text-info me-2"></i>
-                                    <span>90 menit per sesi</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="card-footer bg-white border-0">
-                            <a href="https://wa.me/6283879373233" class="btn btn-primary w-100">Pilih Paket</a>
-                        </div>
-                    </div>
-                </div>
+<div class="col-lg-4 col-md-6">
+    <div class="card card-paket">
+        <div class="card-header text-center">
+            <h4 class="fw-bold mb-2">Paket Standard</h4>
+            <div class="pricing-badge mb-3">Populer</div>
+            <p class="mb-0">Persiapan menyeluruh</p>
+        </div>
+        <div class="card-body p-4">
+            <ul class="list-unstyled">
+                <li class="d-flex align-items-center mb-3">
+                    <i class="bi bi-check-circle-fill text-success me-2"></i>
+                    <span>500 Soal Latihan</span>
+                </li>
+                <li class="d-flex align-items-center mb-3">
+                    <i class="bi bi-check-circle-fill text-success me-2"></i>
+                    <span>15 Tryout Lengkap</span>
+                </li>
+                <li class="d-flex align-items-center mb-3">
+                    <i class="bi bi-check-circle-fill text-success me-2"></i>
+                    <span>Analisis Detail</span>
+                </li>
+                <li class="d-flex align-items-center mb-3">
+                    <i class="bi bi-clock-fill text-info me-2"></i>
+                    <span>90 menit per sesi</span>
+                </li>
+            </ul>
+        </div>
+        <div class="card-footer bg-white border-0">
+            <a href="https://wa.me/6283879373233" class="btn btn-primary w-100">Pilih Paket</a>
+        </div>
+    </div>
+</div>
 
-                <div class="col-lg-4 col-md-6">
-                    <div class="card card-paket">
-                        <div class="card-header text-center">
-                            <h4 class="fw-bold mb-2">Paket Premium</h4>
-                            <div class="pricing-badge mb-3">Terbaik</div>
-                            <p class="mb-0">Persiapan maksimal</p>
-                        </div>
-                        <div class="card-body p-4">
-                            <ul class="list-unstyled">
-                                <li class="d-flex align-items-center mb-3">
-                                    <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                    <span>1000+ Soal Latihan</span>
-                                </li>
-                                <li class="d-flex align-items-center mb-3">
-                                    <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                    <span>30 Tryout Lengkap</span>
-                                </li>
-                                <li class="d-flex align-items-center mb-3">
-                                    <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                    <span>Mentoring 1-on-1</span>
-                                </li>
-                                <li class="d-flex align-items-center mb-3">
-                                    <i class="bi bi-clock-fill text-info me-2"></i>
-                                    <span>120 menit per sesi</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="card-footer bg-white border-0">
-                            <a href="https://wa.me/6283879373233" class="btn btn-primary w-100">Pilih Premium</a>
-                        </div>
-                    </div>
-                </div>
+<div class="col-lg-4 col-md-6">
+    <div class="card card-paket">
+        <div class="card-header text-center">
+            <h4 class="fw-bold mb-2">Paket Premium</h4>
+            <div class="pricing-badge mb-3">Terbaik</div>
+            <p class="mb-0">Persiapan maksimal</p>
+        </div>
+        <div class="card-body p-4">
+            <ul class="list-unstyled">
+                <li class="d-flex align-items-center mb-3">
+                    <i class="bi bi-check-circle-fill text-success me-2"></i>
+                    <span>1000+ Soal Latihan</span>
+                </li>
+                <li class="d-flex align-items-center mb-3">
+                    <i class="bi bi-check-circle-fill text-success me-2"></i>
+                    <span>30 Tryout Lengkap</span>
+                </li>
+                <li class="d-flex align-items-center mb-3">
+                    <i class="bi bi-check-circle-fill text-success me-2"></i>
+                    <span>Mentoring 1-on-1</span>
+                </li>
+                <li class="d-flex align-items-center mb-3">
+                    <i class="bi bi-clock-fill text-info me-2"></i>
+                    <span>120 menit per sesi</span>
+                </li>
+            </ul>
+        </div>
+        <div class="card-footer bg-white border-0">
+            <a href="https://wa.me/6283879373233" class="btn btn-primary w-100">Pilih Premium</a>
+        </div>
+    </div>
+        </div>
             </div>
         </div>
     </section>
@@ -617,95 +673,89 @@
     </section>
 
     <!-- Footer -->
-<footer class="footer bg-light pt-5">
-    <div class="container">
-        <div class="row">
-            <!-- Logo & Deskripsi -->
-            <div class="col-lg-4 mb-4">
-                <div class="footer-section">
-                    <h5>
-                        <i class="bi bi-mortarboard-fill me-2"></i>
-                        Masuk CPNS
-                    </h5>
-                    <p>
-                        Platform pembelajaran online terdepan untuk persiapan tes CPNS 
-                        dengan sistem yang komprehensif dan terintegrasi.
-                    </p>
-                    <div class="social-links">
-                        <a href="#" class="me-3"><i class="bi bi-facebook fs-4"></i></a>
-                        <a href="#" class="me-3"><i class="bi bi-twitter fs-4"></i></a>
-                        <a href="#" class="me-3"><i class="bi bi-instagram fs-4"></i></a>
-                        <a href="#" class="me-3"><i class="bi bi-youtube fs-4"></i></a>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-section">
+                        <h5>
+                            <i class="bi bi-mortarboard-fill me-2"></i>
+                            Masuk CPNS
+                        </h5>
+                        <p>
+                            Platform pembelajaran online terdepan untuk persiapan tes CPNS 
+                            dengan sistem yang komprehensif dan terintegrasi.
+                        </p>
+                        <div class="social-links">
+                            <a href="#" class="me-3"><i class="bi bi-facebook fs-4"></i></a>
+                            <a href="#" class="me-3"><i class="bi bi-twitter fs-4"></i></a>
+                            <a href="#" class="me-3"><i class="bi bi-instagram fs-4"></i></a>
+                            <a href="#" class="me-3"><i class="bi bi-youtube fs-4"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <div class="footer-section">
+                        <h5>Layanan</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Tryout Online</a></li>
+                            <li><a href="#">Bank Soal</a></li>
+                            <li><a href="#">Mentoring</a></li>
+                            <li><a href="#">Analisis Hasil</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <div class="footer-section">
+                        <h5>Perusahaan</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Tentang Kami</a></li>
+                            <li><a href="#">Karir</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Kontak</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <div class="footer-section">
+                        <h5>Bantuan</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Panduan</a></li>
+                            <li><a href="#">Support</a></li>
+                            <li><a href="#">Kebijakan</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <div class="footer-section">
+                        <h5>Kontak</h5>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-telephone me-2"></i>+62 812 3456 7890</li>
+                            <li><i class="bi bi-envelope me-2"></i>info@masukcpns.com</li>
+                            <li><i class="bi bi-geo-alt me-2"></i>Jakarta, Indonesia</li>
+                        </ul>
                     </div>
                 </div>
             </div>
-
-            <!-- Layanan -->
-            <div class="col-lg-2 col-md-6 mb-4">
-                <div class="footer-section">
-                    <h5>Layanan</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#">Tryout Online</a></li>
-                        <li><a href="#">Bank Soal</a></li>
-                        <li><a href="#">Mentoring</a></li>
-                        <li><a href="#">Analisis Hasil</a></li>
-                    </ul>
+            
+            <hr class="my-4">
+            
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2024 Masuk CPNS. Hak cipta dilindungi undang-undang.</p>
                 </div>
-            </div>
-
-            <!-- Perusahaan -->
-            <div class="col-lg-2 col-md-6 mb-4">
-                <div class="footer-section">
-                    <h5>Perusahaan</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#">Tentang Kami</a></li>
-                        <li><a href="#">Karir</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Kontak</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Bantuan -->
-            <div class="col-lg-2 col-md-6 mb-4">
-                <div class="footer-section">
-                    <h5>Bantuan</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Panduan</a></li>
-                        <li><a href="#">Support</a></li>
-                        <li><a href="#">Kebijakan</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Kontak -->
-            <div class="col-lg-2 col-md-6 mb-4">
-                <div class="footer-section">
-                    <h5>Kontak</h5>
-                    <ul class="list-unstyled">
-                        <li><i class="bi bi-telephone me-2"></i>+62 812 3456 7890</li>
-                        <li><i class="bi bi-envelope me-2"></i>info@masukcpns.com</li>
-                        <li><i class="bi bi-geo-alt me-2"></i>Jakarta, Indonesia</li>
-                    </ul>
+                <div class="col-md-6 text-end">
+                    <a href="#" class="me-3">Syarat & Ketentuan</a>
+                    <a href="#">Kebijakan Privasi</a>
                 </div>
             </div>
         </div>
-
-        <hr class="my-4">
-
-        <!-- Bawah Footer -->
-        <div class="row align-items-center">
-            <div class="col-md-6">
-                <p class="mb-0">&copy; 2024 Masuk CPNS. Hak cipta dilindungi undang-undang.</p>
-            </div>
-            <div class="col-md-6 text-end">
-                <a href="#" class="me-3">Syarat & Ketentuan</a>
-                <a href="#">Kebijakan Privasi</a>
-            </div>
-        </div>
-    </div>
-</footer>
+    </footer>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -772,6 +822,7 @@
             }
         });
 
+
         document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
             link.addEventListener('click', () => {
                 const navbarToggler = document.querySelector('.navbar-toggler');
@@ -781,5 +832,3 @@
                     navbarToggler.click();
                 }
             });
-        });
-    </script>
