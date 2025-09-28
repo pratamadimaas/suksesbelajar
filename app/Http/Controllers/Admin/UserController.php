@@ -58,7 +58,7 @@ class UserController extends Controller
         'name' => $request->name,
         'email' => $request->email,
         'password' => Hash::make($generatedPassword),
-        'role_id' => 2, // Menetapkan role 'siswa' dengan ID 2
+        'role_id' => 1, // Menetapkan role 'siswa' dengan ID 1
     ]);
 
     // --- Logika Pengiriman Email ---
@@ -97,5 +97,40 @@ class UserController extends Controller
 
         return redirect()->route('admin.users.index')
             ->with('success', 'Pengguna berhasil dihapus.');
+    }
+    
+    /**
+     * Tampilkan form untuk menugaskan paket ke pengguna
+     */
+    public function assignPaketForm(User $user)
+    {
+        // Ambil semua paket yang tersedia
+        $pakets = Paket::orderBy('nama_paket', 'asc')->get();
+
+        // Ambil ID paket yang sudah ditugaskan ke pengguna ini menggunakan relasi database
+        // **WORKAROUND DIHAPUS, MENGGUNAKAN RELASI PAKETS()**
+        $assignedPaketIds = $user->pakets()->pluck('pakets.id')->toArray(); 
+
+        return view('admin.users.assign-paket', compact('user', 'pakets', 'assignedPaketIds'));
+    }
+
+    /**
+     * Simpan penugasan paket ke pengguna
+     */
+    public function saveAssignPaket(Request $request, User $user)
+    {
+        $request->validate([
+            'paket_ids' => 'nullable|array',
+            'paket_ids.*' => 'exists:pakets,id',
+        ]);
+
+        $paketIds = $request->input('paket_ids') ?? [];
+
+        // **WORKAROUND DIHAPUS, MENGGUNAKAN FUNGSI SYNC() UNTUK MENYIMPAN KE TABEL PIVOT**
+        // Sync akan menghapus relasi yang tidak dipilih dan menambahkan relasi yang dipilih.
+        $user->pakets()->sync($paketIds);
+
+        return redirect()->route('admin.users.index')
+             ->with('success', 'Penugasan paket untuk ' . $user->name . ' berhasil diperbarui.');
     }
 }

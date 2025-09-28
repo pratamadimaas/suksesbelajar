@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany; // Ditambahkan
+use App\Models\Paket; // Ditambahkan
 
 class User extends Authenticatable
 {
@@ -24,6 +26,19 @@ class User extends Authenticatable
         'birth_date'
     ];
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+        ];
+    }
+    
     /**
      * Atribut yang harus disembunyikan untuk serialisasi.
      *
@@ -48,6 +63,18 @@ class User extends Authenticatable
     public function ujians()
     {
         return $this->hasMany(Ujian::class);
+    }
+
+    // --- RELASI BARU UNTUK FITUR ASSIGN PAKET ---
+    
+    /**
+     * Relasi many-to-many ke Paket.
+     * Ini akan mengambil semua paket yang ditugaskan kepada pengguna ini.
+     */
+    public function pakets(): BelongsToMany
+    {
+        // Menggunakan tabel pivot 'paket_user' dan memuat kolom 'is_active'.
+        return $this->belongsToMany(Paket::class, 'paket_user')->withPivot('is_active');
     }
 
     /**

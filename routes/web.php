@@ -100,6 +100,11 @@ Route::middleware('auth')->group(function () {
         Route::post('users/{user}/reset-password', [UserController::class, 'resetPassword'])->name('users.reset-password');
         Route::get('users/create', [UserController::class, 'create'])->name('users.create');
         Route::post('users', [UserController::class, 'store'])->name('users.store');
+        
+        // Rute untuk Menugaskan Paket ke Pengguna (Diperbarui untuk menggunakan nama rute: users.assign-paket)
+        Route::get('users/{user}/assign-paket', [UserController::class, 'assignPaketForm'])->name('users.assign-paket');
+        Route::post('users/{user}/save-assign', [UserController::class, 'saveAssignPaket'])->name('users.save-assign');
+
         Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
     });
 });
