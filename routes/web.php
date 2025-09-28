@@ -97,6 +97,10 @@ Route::middleware('auth')->group(function () {
 
         // User Management
         Route::get('users', [UserController::class, 'index'])->name('users.index');
+        
+        // Rute BARU untuk Aksi Massal (Memproses form checkbox)
+        Route::post('users/assign-selected', [UserController::class, 'assignPaketSelected'])->name('users.assign-selected');
+
         Route::post('users/{user}/reset-password', [UserController::class, 'resetPassword'])->name('users.reset-password');
         Route::get('users/create', [UserController::class, 'create'])->name('users.create');
         Route::post('users', [UserController::class, 'store'])->name('users.store');
