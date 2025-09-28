@@ -553,7 +553,7 @@
                             <i class="bi bi-star-fill text-warning me-1"></i>
                             <i class="bi bi-star-fill text-warning me-1"></i>
                             <i class="bi bi-star-fill text-warning me-3"></i>
-                            Sarah Wijaya - Lulus CPNS 2024
+                            Hafid - Lulus CPNS 2024
                         </div>
                     </div>
                 </div>
@@ -570,7 +570,7 @@
                             <i class="bi bi-star-fill text-warning me-1"></i>
                             <i class="bi bi-star-fill text-warning me-1"></i>
                             <i class="bi bi-star-fill text-warning me-3"></i>
-                            Ahmad Pratama - Lulus CPNS 2024
+                            Uya - Lulus CPNS 2024
                         </div>
                     </div>
                 </div>
@@ -587,7 +587,7 @@
                             <i class="bi bi-star-fill text-warning me-1"></i>
                             <i class="bi bi-star-fill text-warning me-1"></i>
                             <i class="bi bi-star-fill text-warning me-3"></i>
-                            Rina Sari - Lulus CPNS 2024
+                            Alam - Lulus CPNS 2024
                         </div>
                     </div>
                 </div>
