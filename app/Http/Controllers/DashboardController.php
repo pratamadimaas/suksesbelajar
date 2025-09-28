@@ -9,17 +9,18 @@ use App\Models\Paket;
 class DashboardController extends Controller
 {
     public function siswa()
-    {
-        $user = auth()->user();
-        $riwayatUjian = Ujian::where('user_id', $user->id)
-            ->with('paket')
-            ->orderBy('created_at', 'desc')
-            ->get();
-        
-        $pakets = Paket::where('is_active', true)->get();
-        
-        return view('siswa.dashboard', compact('riwayatUjian', 'pakets'));
-    }
+{
+    $user = auth()->user();
+    $riwayatUjian = Ujian::where('user_id', $user->id)
+        ->with('paket')
+        ->orderBy('created_at', 'desc')
+        ->get();
+    
+    // Perbaiki: Ambil hanya paket yang sudah ditugaskan ke pengguna ini
+    $pakets = $user->pakets()->where('is_active', true)->get();
+    
+    return view('siswa.dashboard', compact('riwayatUjian', 'pakets'));
+}
 
     public function admin()
     {
