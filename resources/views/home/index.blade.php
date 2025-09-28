@@ -455,6 +455,7 @@
 </div>
 
 
+<!-- Paket Standard -->
 <div class="col-lg-4 col-md-6">
     <div class="card card-paket">
         <div class="card-header text-center">
@@ -466,19 +467,23 @@
             <ul class="list-unstyled">
                 <li class="d-flex align-items-center mb-3">
                     <i class="bi bi-check-circle-fill text-success me-2"></i>
-                    <span>500 Soal Latihan</span>
+                    <span>10x Try Out Lengkap</span>
                 </li>
                 <li class="d-flex align-items-center mb-3">
                     <i class="bi bi-check-circle-fill text-success me-2"></i>
-                    <span>15 Tryout Lengkap</span>
+                    <span>Dilengkapi Pembahasan</span>
                 </li>
                 <li class="d-flex align-items-center mb-3">
                     <i class="bi bi-check-circle-fill text-success me-2"></i>
-                    <span>Analisis Detail</span>
+                    <span>Modul Belajar Eksklusif</span>
+                </li>
+                <li class="d-flex align-items-center mb-3">
+                    <i class="bi bi-check-circle-fill text-success me-2"></i>
+                    <span>Akses Leaderboard Nasional</span>
                 </li>
                 <li class="d-flex align-items-center mb-3">
                     <i class="bi bi-clock-fill text-info me-2"></i>
-                    <span>90 menit per sesi</span>
+                    <span>100 menit per sesi</span>
                 </li>
             </ul>
         </div>
@@ -488,6 +493,7 @@
     </div>
 </div>
 
+<!-- Paket Premium -->
 <div class="col-lg-4 col-md-6">
     <div class="card card-paket">
         <div class="card-header text-center">
@@ -499,19 +505,23 @@
             <ul class="list-unstyled">
                 <li class="d-flex align-items-center mb-3">
                     <i class="bi bi-check-circle-fill text-success me-2"></i>
-                    <span>1000+ Soal Latihan</span>
+                    <span>20x Try Out Lengkap</span>
                 </li>
                 <li class="d-flex align-items-center mb-3">
                     <i class="bi bi-check-circle-fill text-success me-2"></i>
-                    <span>30 Tryout Lengkap</span>
+                    <span>Dilengkapi Pembahasan</span>
                 </li>
                 <li class="d-flex align-items-center mb-3">
                     <i class="bi bi-check-circle-fill text-success me-2"></i>
-                    <span>Mentoring 1-on-1</span>
+                    <span>Modul Belajar Lengkap</span>
+                </li>
+                <li class="d-flex align-items-center mb-3">
+                    <i class="bi bi-check-circle-fill text-success me-2"></i>
+                    <span>Akses Leaderboard Nasional</span>
                 </li>
                 <li class="d-flex align-items-center mb-3">
                     <i class="bi bi-clock-fill text-info me-2"></i>
-                    <span>120 menit per sesi</span>
+                    <span>100 menit per sesi</span>
                 </li>
             </ul>
         </div>
@@ -519,9 +529,8 @@
             <a href="https://wa.me/6283879373233" class="btn btn-primary w-100">Pilih Premium</a>
         </div>
     </div>
-        </div>
-            </div>
-        </div>
+</div>
+
     </section>
 
     <!-- Testimonial Section -->
