@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\UserCredentialsMail;
-use Illuminate\Support\Facades\Log; // Import Log yang sudah bersih
+use Illuminate\Support\Facades\Log; // Tambahkan import Log
 
 class UserController extends Controller
 {
@@ -50,63 +50,30 @@ class UserController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
         ]);
 
-        // GENERATE PASSWORD OTOMATIS
-        $userCount = User::count() + 1;
-        $generatedPassword = 'password' . $userCount;
+    // Hitung jumlah pengguna yang ada untuk membuat password unik
+    $userCount = User::count() + 1;
+    $generatedPassword = 'password' . $userCount;
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($generatedPassword), 
-            'role_id' => 1, // Menggunakan ID 1 untuk SISWA
-        ]);
+    $user = User::create([
+        'name' => $request->name,
+        'email' => $request->email,
+        'password' => Hash::make($generatedPassword),
+        'role_id' => 2, // Menetapkan role 'siswa' dengan ID 2
+    ]);
 
-        // LOGIKA PENGIRIMAN EMAIL
-        try {
-            Mail::to($user->email)->send(new UserCredentialsMail($user, $generatedPassword));
-        } catch (\Exception $e) {
-            Log::error('Gagal mengirim email kredensial untuk pengguna baru: ' . $user->email . ' | Error: ' . $e->getMessage());
-        }
-
-        return redirect()->route('admin.users.index')->with('success', 'Pengguna berhasil ditambahkan dan email kredensial telah dikirim. Password default: "' . $generatedPassword . '".');
+    // --- Logika Pengiriman Email ---
+    try {
+        // Kirim email ke pengguna dengan detail login
+        Mail::to($user->email)->send(new UserCredentialsMail($user, $generatedPassword));
+    } catch (\Exception $e) {
+        // Catat error jika pengiriman email gagal
+        Log::error('Gagal mengirim email kredensial untuk pengguna baru: ' . $user->email . ' | Error: ' . $e->getMessage());
     }
+    // ---------------------------------
 
-    // --- LOGIKA PENUGASAN PAKET BARU ---
-
-    /**
-     * Tampilkan form untuk menetapkan paket ujian ke pengguna (siswa).
-     */
-    public function assignPaket(User $user)
-    {
-        // Ambil semua paket yang tersedia
-        $pakets = Paket::all();
-
-        // Ambil ID paket yang sudah ditugaskan ke pengguna ini
-        $assignedPaketIds = $user->pakets()->pluck('pakets.id')->toArray();
-
-        return view('admin.users.assign-paket', compact('user', 'pakets', 'assignedPaketIds'));
-    }
-
-    /**
-     * Simpan paket ujian yang dipilih untuk pengguna.
-     */
-    public function savePaket(Request $request, User $user)
-    {
-        $validated = $request->validate([
-            'paket_ids' => 'nullable|array',
-            'paket_ids.*' => 'exists:pakets,id',
-        ]);
-
-        $paketIds = $validated['paket_ids'] ?? [];
-
-        // Sinkronkan relasi Many-to-Many (diperlukan relasi pakets() di model User)
-        $user->pakets()->sync($paketIds);
-
-        return redirect()->route('admin.users.index')
-            ->with('success', 'Penugasan paket untuk ' . $user->name . ' berhasil diperbarui.');
-    }
-
-    // --- LOGIKA LAINNYA ---
+    // Arahkan kembali dengan pesan sukses yang menyertakan password
+    return redirect()->route('admin.users.index')->with('success', 'Pengguna berhasil ditambahkan dan email kredensial telah dikirim. Password default: "' . $generatedPassword . '".');
+}
 
     /**
      * Reset password user tertentu.
