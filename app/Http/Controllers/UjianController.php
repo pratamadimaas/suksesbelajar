@@ -78,8 +78,13 @@ class UjianController extends Controller
 
         // Hitung waktu habis
         $waktuHabis = Carbon::parse($ujian->mulai_ujian)->addMinutes($ujian->paket->waktu_ujian);
+        
+        // Cek apakah waktu sudah habis
         if (now() > $waktuHabis) {
+            // Jika waktu habis, submit ujian
             $this->submitUjian($ujian);
+            
+            // REDIRECT SEGERA: Pastikan browser diarahkan ke halaman hasil
             return redirect()->route('ujian.hasil', $ujian);
         }
 
@@ -147,8 +152,16 @@ class UjianController extends Controller
      */
     public function hasil(Ujian $ujian)
     {
+        // FIX: Pastikan ujian sudah selesai (finished) sebelum menampilkan hasil
         if ($ujian->user_id !== auth()->id() || $ujian->status === 'ongoing') {
-            return redirect()->route('dashboard');
+            
+            // Jika status masih 'ongoing' dan user mencoba akses halaman hasil
+            // Kita paksa submit dan redirect ke hasil yang baru
+            if ($ujian->status === 'ongoing') {
+                 $this->submitUjian($ujian);
+            }
+            // Setelah disubmit, redirect ke halaman hasil (yang seharusnya sudah memiliki data lengkap)
+            return redirect()->route('ujian.hasil', $ujian);
         }
 
         $jawabans = $ujian->ujianJawabans()->with('soal')->get();
@@ -206,6 +219,11 @@ class UjianController extends Controller
      */
     private function submitUjian(Ujian $ujian)
     {
+        // PENTING: Jika ujian sudah finished, jangan hitung ulang.
+        if ($ujian->status === 'finished') {
+            return;
+        }
+        
         $jawabans = $ujian->ujianJawabans()->with('soal')->get();
         
         $skorTWK = $jawabans->where('soal.kategori', 'TWK')->sum('skor');
@@ -214,7 +232,7 @@ class UjianController extends Controller
         $totalSkor = $skorTWK + $skorTIU + $skorTKP;
 
         $ujian->update([
-            'selesai_ujian' => now(),
+            'selesai_ujian' => now(), // Waktu selesai dicatat di sini
             'skor_twk' => $skorTWK,
             'skor_tiu' => $skorTIU,
             'skor_tkp' => $skorTKP,
@@ -276,13 +294,13 @@ class UjianController extends Controller
     }
 
     public function showResult($id)
-{
-    // Mengambil data ujian dan relasi yang diperlukan
-    $ujian = Ujian::with(['paket', 'ujianJawabans.soal'])->findOrFail($id);
-    
-    // Logika untuk menghitung ranking
-    $ranking = Ujian::where('total_skor', '>', $ujian->total_skor)->count() + 1;
+    {
+        // Mengambil data ujian dan relasi yang diperlukan
+        $ujian = Ujian::with(['paket', 'ujianJawabans.soal'])->findOrFail($id);
+        
+        // Logika untuk menghitung ranking
+        $ranking = Ujian::where('total_skor', '>', $ujian->total_skor)->count() + 1;
 
-    return view('ujian.hasil', compact('ujian', 'ranking'));
-}
+        return view('ujian.hasil', compact('ujian', 'ranking'));
+    }
 }
