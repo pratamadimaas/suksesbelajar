@@ -9,18 +9,22 @@ use App\Models\Paket;
 class DashboardController extends Controller
 {
     public function siswa()
-{
-    $user = auth()->user();
-    $riwayatUjian = Ujian::where('user_id', $user->id)
-        ->with('paket')
-        ->orderBy('created_at', 'desc')
-        ->get();
-    
-    // Perbaiki: Ambil hanya paket yang sudah ditugaskan ke pengguna ini
-    $pakets = $user->pakets()->where('is_active', true)->get();
-    
-    return view('siswa.dashboard', compact('riwayatUjian', 'pakets'));
-}
+    {
+        $user = auth()->user();
+        $riwayatUjian = Ujian::where('user_id', $user->id)
+            ->with('paket')
+            ->orderBy('created_at', 'desc')
+            ->get();
+        
+        // PERBAIKAN: Mengatasi ambiguitas kolom 'is_active' dengan menyebutkan nama tabelnya.
+        // Ini memastikan hanya paket yang ditugaskan (via relasi $user->pakets())
+        // dan berstatus aktif secara global ('pakets.is_active' = true) yang dimuat.
+        $pakets = $user->pakets()
+                       ->where('pakets.is_active', true)
+                       ->get();
+        
+        return view('siswa.dashboard', compact('riwayatUjian', 'pakets'));
+    }
 
     public function admin()
     {
