@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\UserCredentialsMail;
+use Illuminate\Support\Facades\Log; // Import Log sudah benar
 
 class UserController extends Controller
 {
@@ -45,19 +48,28 @@ class UserController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
         ]);
 
-        // Hitung jumlah pengguna yang ada untuk membuat password unik
+        // 1. GENERATE PASSWORD OTOMATIS (Menggantikan $request->password yang kosong)
         $userCount = User::count() + 1;
         $generatedPassword = 'password' . $userCount;
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($generatedPassword),
-            'role_id' => 2, // Menetapkan role 'siswa' dengan ID 2
+            // 2. MENGGUNAKAN PASSWORD YANG DI-GENERATE
+            'password' => Hash::make($generatedPassword), 
+            'role_id' => 1, // Menetapkan role 'admin' dengan ID 1 (sesuai struktur awal)
         ]);
 
+        // --- 3. LOGIKA PENGIRIMAN EMAIL DIKEMBALIKAN ---
+        try {
+            Mail::to($user->email)->send(new UserCredentialsMail($user, $generatedPassword));
+        } catch (\Exception $e) {
+            Log::error('Gagal mengirim email kredensial untuk pengguna baru: ' . $user->email . ' | Error: ' . $e->getMessage());
+        }
+        // ------------------------------------------------
+
         // Arahkan kembali dengan pesan sukses yang menyertakan password
-        return redirect()->route('admin.users.index')->with('success', 'Pengguna berhasil ditambahkan. Password default: "' . $generatedPassword . '".');
+        return redirect()->route('admin.users.index')->with('success', 'Pengguna berhasil ditambahkan dan email kredensial telah dikirim. Password default: "' . $generatedPassword . '".');
     }
 
     /**
