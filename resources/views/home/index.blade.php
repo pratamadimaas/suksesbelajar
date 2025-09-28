@@ -693,8 +693,8 @@
                     <div class="footer-section">
                         <h5>Kontak</h5>
                         <ul class="list-unstyled">
-                            <li><i class="bi bi-telephone me-2"></i>+62 812 3456 7890</li>
-                            <li><i class="bi bi-envelope me-2"></i>info@masukcpns.com</li>
+                            <li><i class="bi bi-telephone me-2"></i>+6283879373233</li>
+                            <li><i class="bi bi-envelope me-2"></i>masukcpns5@gmail.com</li>
                             <li><i class="bi bi-geo-alt me-2"></i>Jakarta, Indonesia</li>
                         </ul>
                     </div>
@@ -705,7 +705,7 @@
             
             <div class="row align-items-center">
                 <div class="col-md-6">
-                    <p class="mb-0">&copy; 2024 Masuk CPNS. Hak cipta dilindungi undang-undang.</p>
+                    <p class="mb-0">&copy; 2025 Masuk CPNS. Hak cipta dilindungi undang-undang.</p>
                 </div>
                 <div class="col-md-6 text-end">
                     <a href="#" class="me-3">Syarat & Ketentuan</a>
