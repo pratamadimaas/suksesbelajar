@@ -443,6 +443,10 @@
                     <span>Dilengkapi Pembahasan</span>
                 </li>
                 <li class="d-flex align-items-center mb-3">
+                    <i class="bi bi-check-circle-fill text-success me-2"></i>
+                    <span>Akses Leaderboard Nasional</span>
+                </li>
+                <li class="d-flex align-items-center mb-3">
                     <i class="bi bi-clock-fill text-info me-2"></i>
                     <span>100 menit durasi</span>
                 </li>
