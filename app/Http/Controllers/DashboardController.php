@@ -23,7 +23,7 @@ class DashboardController extends Controller
 
     public function admin()
     {
-        $totalSiswa = \App\Models\User::where('role_id', 2)->count();
+        $totalSiswa = \App\Models\User::where('role_id', 1)->count();
         $totalSoal = \App\Models\Soal::count();
         $totalUjian = Ujian::count();
         $totalPaket = Paket::count();

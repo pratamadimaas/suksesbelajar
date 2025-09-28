@@ -42,36 +42,36 @@ class UserController extends Controller
      * Simpan pengguna baru ke database dengan password otomatis
      */
     public function store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-        ]);
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users',
+    ]);
 
-        // Hitung jumlah pengguna yang ada untuk membuat password unik
-        $userCount = User::count() + 1;
-        $generatedPassword = 'password' . $userCount;
+    // Hitung jumlah pengguna yang ada untuk membuat password unik
+    $userCount = User::count() + 1;
+    $generatedPassword = 'password' . $userCount;
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($generatedPassword),
-            'role_id' => 2, // Menetapkan role 'siswa' dengan ID 2
-        ]);
+    $user = User::create([
+        'name' => $request->name,
+        'email' => $request->email,
+        'password' => Hash::make($generatedPassword),
+        'role_id' => 2, // Menetapkan role 'siswa' dengan ID 2
+    ]);
 
-        // --- Logika Pengiriman Email ---
-        try {
-            // Kirim email ke pengguna dengan detail login
-            Mail::to($user->email)->send(new UserCredentialsMail($user, $generatedPassword));
-        } catch (\Exception $e) {
-            // Catat error jika pengiriman email gagal
-            Log::error('Gagal mengirim email kredensial untuk pengguna baru: ' . $user->email . ' | Error: ' . $e->getMessage());
-        }
-        // ---------------------------------
-
-        // Arahkan kembali dengan pesan sukses yang menyertakan password
-        return redirect()->route('admin.users.index')->with('success', 'Pengguna berhasil ditambahkan dan email kredensial telah dikirim. Password default: "' . $generatedPassword . '".');
+    // --- Logika Pengiriman Email ---
+    try {
+        // Kirim email ke pengguna dengan detail login
+        Mail::to($user->email)->send(new UserCredentialsMail($user, $generatedPassword));
+    } catch (\Exception $e) {
+        // Catat error jika pengiriman email gagal
+        Log::error('Gagal mengirim email kredensial untuk pengguna baru: ' . $user->email . ' | Error: ' . $e->getMessage());
     }
+    // ---------------------------------
+
+    // Arahkan kembali dengan pesan sukses yang menyertakan password
+    return redirect()->route('admin.users.index')->with('success', 'Pengguna berhasil ditambahkan dan email kredensial telah dikirim. Password default: "' . $generatedPassword . '".');
+}
 
     /**
      * Reset password user tertentu.

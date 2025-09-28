@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\SoalController;
 use App\Http\Controllers\Admin\PaketController;
 use App\Http\Controllers\Admin\LaporanController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\SiswaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,10 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:siswa')->group(function () {
         Route::get('/siswa/dashboard', [DashboardController::class, 'siswa'])->name('siswa.dashboard');
         
+        // Profil dan Ganti Password Siswa
+        Route::get('/siswa/profile', [SiswaController::class, 'profile'])->name('siswa.profile');
+        Route::put('/siswa/profile/update-password', [SiswaController::class, 'updatePassword'])->name('siswa.updatePassword');
+
         // Ujian
         Route::prefix('ujian')->name('ujian.')->group(function () {
             Route::get('/', [UjianController::class, 'leaderboard'])->name('leaderboard');
