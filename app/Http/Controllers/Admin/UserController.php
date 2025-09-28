@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Models\Paket; // Import model Paket diperlukan untuk fitur assignPaket
+use App\Models\Paket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\UserCredentialsMail;
-use Illuminate\Support\Facades\Log; // Tambahkan import Log
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -20,8 +20,8 @@ class UserController extends Controller
     {
         $search = $request->input('search');
 
-        // Pastikan Anda memuat relasi 'role' jika ada
         $users = User::query()
+                ->where('role_id', 1) // HANYA tampilkan siswa di sini (asumsi)
                 ->when($search, function ($query, $search) {
                     return $query->where('name', 'like', "%{$search}%")
                                  ->orWhere('email', 'like', "%{$search}%");
@@ -29,8 +29,49 @@ class UserController extends Controller
                 ->orderBy('name', 'asc')
                 ->paginate(10); 
 
-        return view('admin.users.index', compact('users', 'search'));
+        // Untuk mengisi dropdown aksi massal
+        $pakets = Paket::orderBy('nama_paket')->get(['id', 'nama_paket']);
+
+        // Mengirim data users dan pakets ke view
+        return view('admin.users.index', compact('users', 'search', 'pakets'));
     }
+    
+    // --- FUNGSI BARU UNTUK AKSI MASSAL ---
+
+    /**
+     * Menugaskan paket yang dipilih ke daftar pengguna yang dicentang.
+     */
+    public function assignPaketSelected(Request $request)
+    {
+        $validated = $request->validate([
+            'user_ids' => 'required|array',
+            'user_ids.*' => 'exists:users,id',
+            'paket_id' => 'required|exists:pakets,id'
+        ], [
+            'user_ids.required' => 'Minimal satu pengguna harus dipilih.',
+            'paket_id.required' => 'Anda harus memilih paket untuk ditugaskan.'
+        ]);
+
+        $userIds = $validated['user_ids'];
+        $paketId = $validated['paket_id'];
+
+        $paket = Paket::findOrFail($paketId);
+        $users = User::whereIn('id', $userIds)->get();
+
+        $assignedCount = 0;
+
+        foreach ($users as $user) {
+            // Gunakan syncWithoutDetaching untuk MENAMBAH paket tanpa menghapus paket lama
+            $user->pakets()->syncWithoutDetaching([$paketId]);
+            $assignedCount++;
+        }
+
+        return redirect()->route('admin.users.index')
+                         ->with('success', "Berhasil menugaskan paket '{$paket->nama_paket}' kepada {$assignedCount} pengguna yang dipilih.");
+    }
+    
+    // --- END FUNGSI BARU ---
+
 
     /**
      * Tampilkan form untuk menambah pengguna baru
@@ -50,30 +91,26 @@ class UserController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
         ]);
 
-    // Hitung jumlah pengguna yang ada untuk membuat password unik
-    $userCount = User::count() + 1;
-    $generatedPassword = 'password' . $userCount;
+        $userCount = User::count() + 1;
+        $generatedPassword = 'password' . $userCount;
 
-    $user = User::create([
-        'name' => $request->name,
-        'email' => $request->email,
-        'password' => Hash::make($generatedPassword),
-        'role_id' => 1, // Menetapkan role 'siswa' dengan ID 1
-    ]);
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($generatedPassword),
+            'role_id' => 1, // Menetapkan role 'siswa' dengan ID 1
+        ]);
 
-    // --- Logika Pengiriman Email ---
-    try {
-        // Kirim email ke pengguna dengan detail login
-        Mail::to($user->email)->send(new UserCredentialsMail($user, $generatedPassword));
-    } catch (\Exception $e) {
-        // Catat error jika pengiriman email gagal
-        Log::error('Gagal mengirim email kredensial untuk pengguna baru: ' . $user->email . ' | Error: ' . $e->getMessage());
+        // --- Logika Pengiriman Email ---
+        try {
+            Mail::to($user->email)->send(new UserCredentialsMail($user, $generatedPassword));
+        } catch (\Exception $e) {
+            Log::error('Gagal mengirim email kredensial untuk pengguna baru: ' . $user->email . ' | Error: ' . $e->getMessage());
+        }
+        // ---------------------------------
+
+        return redirect()->route('admin.users.index')->with('success', 'Pengguna berhasil ditambahkan dan email kredensial telah dikirim. Password default: "' . $generatedPassword . '".');
     }
-    // ---------------------------------
-
-    // Arahkan kembali dengan pesan sukses yang menyertakan password
-    return redirect()->route('admin.users.index')->with('success', 'Pengguna berhasil ditambahkan dan email kredensial telah dikirim. Password default: "' . $generatedPassword . '".');
-}
 
     /**
      * Reset password user tertentu.
@@ -104,11 +141,7 @@ class UserController extends Controller
      */
     public function assignPaketForm(User $user)
     {
-        // Ambil semua paket yang tersedia
         $pakets = Paket::orderBy('nama_paket', 'asc')->get();
-
-        // Ambil ID paket yang sudah ditugaskan ke pengguna ini menggunakan relasi database
-        // **WORKAROUND DIHAPUS, MENGGUNAKAN RELASI PAKETS()**
         $assignedPaketIds = $user->pakets()->pluck('pakets.id')->toArray(); 
 
         return view('admin.users.assign-paket', compact('user', 'pakets', 'assignedPaketIds'));
@@ -126,8 +159,6 @@ class UserController extends Controller
 
         $paketIds = $request->input('paket_ids') ?? [];
 
-        // **WORKAROUND DIHAPUS, MENGGUNAKAN FUNGSI SYNC() UNTUK MENYIMPAN KE TABEL PIVOT**
-        // Sync akan menghapus relasi yang tidak dipilih dan menambahkan relasi yang dipilih.
         $user->pakets()->sync($paketIds);
 
         return redirect()->route('admin.users.index')
