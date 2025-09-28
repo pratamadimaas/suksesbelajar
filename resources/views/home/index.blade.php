@@ -424,39 +424,36 @@
             </div>
 
             <div class="row g-4">
-                <!-- Paket Basic -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="card card-paket">
-                        <div class="card-header text-center">
-                            <h4 class="fw-bold mb-2">Paket Basic</h4>
-                            <div class="pricing-badge mb-3">Gratis</div>
-                            <p class="mb-0">Cocok untuk pemula</p>
-                        </div>
-                        <div class="card-body p-4">
-                            <ul class="list-unstyled">
-                                <li class="d-flex align-items-center mb-3">
-                                    <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                    <span>100 Soal Latihan</span>
-                                </li>
-                                <li class="d-flex align-items-center mb-3">
-                                    <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                    <span>5 Tryout Mini</span>
-                                </li>
-                                <li class="d-flex align-items-center mb-3">
-                                    <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                    <span>Analisis Dasar</span>
-                                </li>
-                                <li class="d-flex align-items-center mb-3">
-                                    <i class="bi bi-clock-fill text-info me-2"></i>
-                                    <span>60 menit per sesi</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="card-footer bg-white border-0">
-    <a href="https://wa.me/6283879373233" class="btn btn-outline-primary w-100">Mulai Gratis</a>
+               <!-- Paket Basic -->
+<div class="col-lg-4 col-md-6">
+    <div class="card card-paket">
+        <div class="card-header text-center">
+            <h4 class="fw-bold mb-2">Paket Basic</h4>
+            <div class="pricing-badge mb-3">Gratis</div>
+            <p class="mb-0">Cocok untuk pemula</p>
+        </div>
+        <div class="card-body p-4">
+            <ul class="list-unstyled">
+                <li class="d-flex align-items-center mb-3">
+                    <i class="bi bi-check-circle-fill text-success me-2"></i>
+                    <span>1x Try Out</span>
+                </li>
+                <li class="d-flex align-items-center mb-3">
+                    <i class="bi bi-check-circle-fill text-success me-2"></i>
+                    <span>Dilengkapi Pembahasan</span>
+                </li>
+                <li class="d-flex align-items-center mb-3">
+                    <i class="bi bi-clock-fill text-info me-2"></i>
+                    <span>100 menit durasi</span>
+                </li>
+            </ul>
+        </div>
+        <div class="card-footer bg-white border-0">
+            <a href="https://wa.me/6283879373233" class="btn btn-outline-primary w-100">Mulai Gratis</a>
+        </div>
+    </div>
 </div>
-</div>
-</div>
+
 
 <div class="col-lg-4 col-md-6">
     <div class="card card-paket">
