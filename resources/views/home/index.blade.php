@@ -479,10 +479,6 @@
                 </li>
                 <li class="d-flex align-items-center mb-3">
                     <i class="bi bi-check-circle-fill text-success me-2"></i>
-                    <span>Modul Belajar Eksklusif</span>
-                </li>
-                <li class="d-flex align-items-center mb-3">
-                    <i class="bi bi-check-circle-fill text-success me-2"></i>
                     <span>Akses Leaderboard Nasional</span>
                 </li>
                 <li class="d-flex align-items-center mb-3">
@@ -518,10 +514,6 @@
                 <li class="d-flex align-items-center mb-3">
                     <i class="bi bi-check-circle-fill text-success me-2"></i>
                     <span>Dilengkapi Pembahasan</span>
-                </li>
-                <li class="d-flex align-items-center mb-3">
-                    <i class="bi bi-check-circle-fill text-success me-2"></i>
-                    <span>Modul Belajar Lengkap</span>
                 </li>
                 <li class="d-flex align-items-center mb-3">
                     <i class="bi bi-check-circle-fill text-success me-2"></i>
