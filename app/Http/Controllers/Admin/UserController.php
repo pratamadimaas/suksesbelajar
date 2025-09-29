@@ -21,13 +21,14 @@ class UserController extends Controller
         $search = $request->input('search');
 
         $users = User::query()
-                ->where('role_id', 1) // HANYA tampilkan siswa di sini (asumsi)
-                ->when($search, function ($query, $search) {
-                    return $query->where('name', 'like', "%{$search}%")
-                                 ->orWhere('email', 'like', "%{$search}%");
-                })
-                ->orderBy('name', 'asc')
-                ->paginate(10); 
+            ->where('role_id', 1) // HANYA tampilkan siswa di sini (asumsi)
+            ->when($search, function ($query, $search) {
+                return $query->where('name', 'like', "%{$search}%")
+                            ->orWhere('email', 'like', "%{$search}%")
+                            ->orWhere('phone', 'like', "%{$search}%"); // Tambahkan pencarian berdasarkan phone
+            })
+            ->orderBy('name', 'asc')
+            ->paginate(10); 
 
         // Untuk mengisi dropdown aksi massal
         $pakets = Paket::orderBy('nama_paket')->get(['id', 'nama_paket']);
@@ -89,6 +90,7 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            'phone' => 'nullable|string|max:15|unique:users', // Pastikan validasi phone ada
         ]);
 
         $userCount = User::count() + 1;
@@ -97,6 +99,7 @@ class UserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'phone' => $request->phone, // Pastikan field phone disimpan
             'password' => Hash::make($generatedPassword),
             'role_id' => 1, // Menetapkan role 'siswa' dengan ID 1
         ]);

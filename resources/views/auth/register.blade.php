@@ -3,6 +3,7 @@
 @section('title', 'Registrasi')
 
 @section('content')
+
 <div class="container d-flex justify-content-center">
 <div class="card" style="max-width: 500px; width: 100%;">
 <div class="card-header text-center">
@@ -18,6 +19,18 @@
 <div class="invalid-feedback">{{ $message }}</div>
 @enderror
 </div>
+
+{{-- NEW: Input Nomor HP --}}
+
+<div class="mb-3">
+<label for="phone" class="form-label">Nomor HP</label>
+<input type="text" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone') }}" placeholder="">
+@error('phone')
+<div class="invalid-feedback">{{ $message }}</div>
+@enderror
+</div>
+{{-- END NEW --}}
+
 <div class="mb-3">
 <label for="email" class="form-label">Email</label>
 <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required>

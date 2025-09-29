@@ -24,9 +24,6 @@ class AuthController extends Controller
 
     /**
      * Proses login pengguna.
-     */
-    /**
-     * Proses login pengguna.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
@@ -74,6 +71,7 @@ class AuthController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'phone' => 'nullable|string|max:15|unique:users', // Validation for phone
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
         ]);
@@ -82,6 +80,7 @@ class AuthController extends Controller
 
         $user = User::create([
             'name' => $request->name,
+            'phone' => $request->phone, // Save phone number
             'email' => $request->email,
             'password' => Hash::make($password_plaintext),
             'role_id' => 1, // Secara default, pengguna yang mendaftar adalah 'siswa'
