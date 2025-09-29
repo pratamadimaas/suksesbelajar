@@ -296,15 +296,15 @@
                         Dengan ribuan soal berkualitas dan sistem evaluasi yang akurat.
                     </p>
                     <div class="d-flex flex-wrap gap-3">
-                        <a href="#paket-ujian" class="btn btn-hero">
-                            <i class="bi bi-rocket-takeoff me-2"></i>
-                            Mulai Tryout Sekarang
-                        </a>
-                        <a href="#tentang" class="btn btn-outline-light">
-                            <i class="bi bi-play-circle me-2"></i>
-                            Pelajari Lebih Lanjut
-                        </a>
-                    </div>
+                    <a href="https://chat.whatsapp.com/G2ftAKsCWvDDhk1SLaH38U?mode=ems_copy_t" class="btn btn-hero">
+                        <i class="bi bi-rocket-takeoff me-2"></i>
+                        Mulai Tryout Sekarang
+                    </a>
+                    <a href="#tentang" class="btn btn-outline-light">
+                        <i class="bi bi-play-circle me-2"></i>
+                        Pelajari Lebih Lanjut
+                    </a>
+                </div>
                 </div>
                 <div class="col-lg-6 text-center">
                     <div class="position-relative">
