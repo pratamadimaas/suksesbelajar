@@ -443,6 +443,10 @@
                     <span>Akses Leaderboard Nasional</span>
                 </li>
                 <li class="d-flex align-items-center mb-3">
+                    <i class="bi bi-check-circle-fill text-success me-2"></i>
+                    <span>Grup Belajar Bersama (Free)</span>
+                </li>
+                <li class="d-flex align-items-center mb-3">
                     <i class="bi bi-clock-fill text-info me-2"></i>
                     <span>100 menit durasi</span>
                 </li>
@@ -482,6 +486,10 @@
                     <span>Akses Leaderboard Nasional</span>
                 </li>
                 <li class="d-flex align-items-center mb-3">
+                    <i class="bi bi-check-circle-fill text-success me-2"></i>
+                    <span>Grup Belajar Bersama (Standard)</span>
+                </li>
+                <li class="d-flex align-items-center mb-3">
                     <i class="bi bi-clock-fill text-info me-2"></i>
                     <span>100 menit per sesi</span>
                 </li>
@@ -518,6 +526,10 @@
                 <li class="d-flex align-items-center mb-3">
                     <i class="bi bi-check-circle-fill text-success me-2"></i>
                     <span>Akses Leaderboard Nasional</span>
+                </li>
+                <li class="d-flex align-items-center mb-3">
+                    <i class="bi bi-check-circle-fill text-success me-2"></i>
+                    <span>Grup Belajar Bersama (Premium)</span>
                 </li>
                 <li class="d-flex align-items-center mb-3">
                     <i class="bi bi-clock-fill text-info me-2"></i>
