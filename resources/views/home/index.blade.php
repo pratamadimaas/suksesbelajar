@@ -300,10 +300,6 @@
                         <i class="bi bi-rocket-takeoff me-2"></i>
                         Join Grup Belajar Bersama (Gratis)
                     </a>
-                    <a href="#tentang" class="btn btn-outline-light">
-                        <i class="bi bi-play-circle me-2"></i>
-                        Pelajari Lebih Lanjut
-                    </a>
                 </div>
                 </div>
                 <div class="col-lg-6 text-center">
