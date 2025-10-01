@@ -874,7 +874,7 @@
                         Belajar lebih terarah dengan latihan soal terbaru, pembahasan detail, dan simulasi ujian interaktif. 
                         Persiapkan dirimu menghadapi seleksi CPNS dengan strategi yang tepat dan efektif.
                     </p>
-                    <a href="https://chat.whatsapp.com/G2ftAKsCWvDDhk1SLaH38U?mode=ems_copy_t" class="btn-cta">
+                    <a href="https://chat.whatsapp.com/xxxxx" class="btn-cta">
                         <i class="bi bi-whatsapp"></i>
                         Gabung Grup Belajar Gratis
                     </a>
@@ -1077,7 +1077,7 @@
                             </ul>
                         </div>
                         <div class="package-footer">
-                            <a href="https://wa.me/6283879373233" class="btn-package btn-solid">Pilih Paket</a>
+                            <a href="https://chat.whatsapp.com/xxxxx" class="btn-package btn-solid">Pilih Paket</a>
                         </div>
                     </div>
                 </div>
@@ -1114,7 +1114,7 @@
                             </ul>
                         </div>
                         <div class="package-footer">
-                            <a href="https://wa.me/6283879373233" class="btn-package btn-solid">Pilih Premium</a>
+                            <a href="https://chat.whatsapp.com/xxxxx" class="btn-package btn-solid">Pilih Premium</a>
                         </div>
                     </div>
                 </div>
@@ -1203,7 +1203,7 @@
                 <p class="cta-description">
                     Bergabunglah dengan ribuan calon PNS lainnya dan raih impian Anda bersama platform pembelajaran terdepan di Indonesia.
                 </p>
-                <a href="https://wa.me/6283879373233" class="btn-cta-white">
+                <a href="https://chat.whatsapp.com/xxxxx" class="btn-cta-white">
                     <i class="bi bi-rocket-takeoff"></i>
                     Mulai Sekarang
                 </a>
