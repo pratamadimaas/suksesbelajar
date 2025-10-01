@@ -3,153 +3,196 @@
 @section('title', 'Dashboard Siswa')
 
 @push('styles')
-
 <style>
+/* General */
+body {
+    background-color: #f9fafb; /* Light Gray */
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, #059669, #047857);
+    color: #fff;
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+}
+.hero-section h1 {
+    font-weight: 700;
+}
+.hero-section p {
+    font-size: 1.1rem;
+    color: #d1fae5;
+}
+
+/* Stat Cards */
+.stat-card {
+    background-color: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+}
+.stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #059669; /* Primary */
+}
+.stat-label {
+    font-size: 0.9rem;
+    color: #6b7280; /* Gray */
+}
+
+/* Riwayat Ujian Timeline */
+.timeline {
+    border-left: 3px solid #d1fae5;
+    padding-left: 1.5rem;
+}
+.timeline-item {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.15rem;
+    top: 0.4rem;
+    width: 0.75rem;
+    height: 0.75rem;
+    background-color: #059669;
+    border-radius: 50%;
+}
+.timeline-item h5 {
+    margin: 0;
+    font-weight: 600;
+    color: #1f2937;
+}
+.timeline-item small {
+    color: #6b7280;
+}
+
+/* Paket Cards */
 .paket-card {
-background-color: #ffffff;
-border-radius: 1.5rem;
-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-padding: 2.5rem;
-transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-cursor: pointer;
-display: flex;
-flex-direction: column;
-height: 100%;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease;
 }
 .paket-card:hover {
-transform: translateY(-5px);
-box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    transform: translateY(-3px);
 }
 .paket-title {
-color: #1a202c;
-font-weight: 700;
-margin-bottom: 0.5rem;
+    color: #1f2937;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
 }
 .paket-desc {
-color: #4a5568;
-font-size: 0.9rem;
-margin-bottom: 1.5rem;
-flex-grow: 1;
+    color: #6b7280;
+    font-size: 0.9rem;
+    flex-grow: 1;
 }
-.paket-details {
-font-size: 0.8rem;
-color: #718096;
+.btn-primary {
+    background-color: #059669;
+    border: none;
 }
-.btn-start-ujian {
-background-color: #4c51bf;
-border: none;
-color: white;
-font-weight: 600;
-border-radius: 9999px;
-padding: 0.75rem 2rem;
-width: 100%;
-margin-top: 1.5rem;
-transition: background-color 0.3s ease;
+.btn-primary:hover {
+    background-color: #047857;
 }
-.btn-start-ujian:hover {
-background-color: #667eea;
+.btn-orange {
+    background-color: #f97316;
+    color: #fff;
+    border-radius: 9999px;
+    padding: 0.5rem 1.5rem;
+    font-weight: 600;
 }
-.alert-info {
-background-color: #e0f7fa;
-color: #00796b;
-border-left: 5px solid #00acc1;
-border-radius: 0.5rem; / Added border-radius for aesthetic */
+.btn-orange:hover {
+    background-color: #ea580c;
 }
-
-.btn-whatsapp {
-background-color: #25d366; / WhatsApp Green /
-color: white;
-border: none;
-font-weight: 700;
-border-radius: 9999px;
-padding: 0.75rem 2rem;
-transition: background-color 0.3s ease, transform 0.1s ease;
-display: inline-flex;
-align-items: center;
-gap: 0.5rem;
-box-shadow: 0 4px 10px rgba(37, 211, 102, 0.4);
-}
-.btn-whatsapp:hover {
-background-color: #128c7e; / Darker Green on hover */
-transform: translateY(-1px);
-}
-
-/* Ensure the WhatsApp icon is available (assuming Font Awesome is loaded) */
-@import url("https://www.google.com/search?q=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css");
 </style>
-
 @endpush
 
 @section('content')
-
 <div class="container">
-<!-- NEW: WhatsApp Join Group Section -->
-<div class="alert alert-info d-flex flex-column flex-md-row align-items-md-center justify-content-between p-4 mb-5" role="alert">
-<div class="mb-3 mb-md-0">
-<h4 class="mb-1 text-dark" style="font-weight: 700;">Ayo Gabung Komunitas Belajar!</h4>
-<p class="mb-0 text-secondary">Diskusikan soal, tips, dan strategi bersama teman-teman seperjuangan.</p>
-</div>
-<a href="https://chat.whatsapp.com/G2ftAKsCWvDDhk1SLaH38U?mode=ems_copy_t" target="_blank" class="btn-whatsapp">
-<i class="fab fa-whatsapp"></i> Join Grup WhatsApp
-</a>
-</div>
-<!-- END NEW SECTION -->
 
-<h1>Riwayat Ujian Anda</h1>
-<p class="lead">Ini adalah daftar ujian yang sudah Anda ikuti.</p>
-<div class="table-responsive">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Paket Ujian</th>
-                <th>Total Skor</th>
-                <th>Waktu Selesai</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse ($riwayatUjian as $ujian)
-            <tr>
-                <td>{{ $loop->iteration }}</td>
-                <td>{{ $ujian->paket->nama_paket }}</td>
-                <td>{{ $ujian->total_skor }}</td>
-                <td>{{ $ujian->selesai_ujian ? $ujian->selesai_ujian->format('d/m/Y H:i') : '-' }}</td>
-                <td>
-                    @if ($ujian->status === 'finished')
-                    <a href="{{ route('ujian.hasil', $ujian) }}" class="btn btn-sm btn-success">Lihat Hasil</a>
-                    @else
-                    <a href="{{ route('ujian.soal', ['ujian' => $ujian->id, 'nomor' => 1]) }}" class="btn btn-sm btn-warning">Lanjutkan Ujian</a>
-                    @endif
-                </td>
-            </tr>
-            @empty
-            <tr>
-                <td colspan="5" class="text-center">Anda belum mengerjakan ujian.</td>
-            </tr>
-            @endforelse
-        </tbody>
-    </table>
-</div>
-<hr>
-<h3>Daftar Paket Ujian Tersedia</h3>
-<div class="row mt-4">
-    @foreach ($pakets as $paket)
-    <div class="col-md-4 mb-4">
-        <div class="card h-100">
-            <div class="card-body">
-                <h5 class="card-title">{{ $paket->nama_paket }}</h5>
-                <p class="card-text">{{ $paket->deskripsi }}</p>
-                <p class="card-text">Total Soal: {{ $paket->getTotalSoal() }}</p>
-                <p class="card-text">Waktu: {{ $paket->waktu_ujian }} menit</p>
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <h1>Selamat Datang, {{ Auth::user()->name }} 👋</h1>
+        <p>Terus tingkatkan kemampuanmu dengan latihan soal yang tersedia. Semangat meraih sukses!</p>
+    </div>
+
+    <!-- Stat Cards -->
+    <div class="row mb-5">
+        <div class="col-md-4 mb-3">
+            <div class="stat-card">
+                <div class="stat-value">{{ $riwayatUjian->count() }}</div>
+                <div class="stat-label">Ujian Dikerjakan</div>
             </div>
-            <div class="card-footer">
-                <a href="{{ route('ujian.show', $paket) }}" class="btn btn-primary">Kerjakan Ujian</a>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="stat-card">
+                <div class="stat-value">
+                    {{ $riwayatUjian->avg('total_skor') ? number_format($riwayatUjian->avg('total_skor'), 1) : '-' }}
+                </div>
+                <div class="stat-label">Skor Rata-rata</div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="stat-card">
+                <div class="stat-value">{{ $pakets->count() }}</div>
+                <div class="stat-label">Paket Ujian Tersedia</div>
             </div>
         </div>
     </div>
-    @endforeach
-</div>
+
+    <!-- Riwayat Ujian Timeline -->
+    <h3 class="mb-3">📜 Riwayat Ujian</h3>
+    <div class="timeline mb-5">
+        @forelse ($riwayatUjian as $ujian)
+        <div class="timeline-item">
+            <h5>{{ $ujian->paket->nama_paket }}</h5>
+            <small>
+                Skor: <strong>{{ $ujian->total_skor }}</strong> | 
+                {{ $ujian->selesai_ujian ? $ujian->selesai_ujian->format('d/m/Y H:i') : 'Belum selesai' }}
+            </small>
+            <div class="mt-2">
+                @if ($ujian->status === 'finished')
+                <a href="{{ route('ujian.hasil', $ujian) }}" class="btn btn-sm btn-primary">Lihat Hasil</a>
+                @else
+                <a href="{{ route('ujian.soal', ['ujian' => $ujian->id, 'nomor' => 1]) }}" class="btn btn-sm btn-orange">Lanjutkan</a>
+                @endif
+            </div>
+        </div>
+        @empty
+        <p class="text-gray">Belum ada riwayat ujian.</p>
+        @endforelse
+    </div>
+
+    <!-- Paket Ujian -->
+    <h3 class="mb-3">📦 Paket Ujian Tersedia</h3>
+    <div class="row">
+        @foreach ($pakets as $paket)
+        <div class="col-md-4 mb-4">
+            <div class="paket-card">
+                <div>
+                    <h5 class="paket-title">{{ $paket->nama_paket }}</h5>
+                    <p class="paket-desc">{{ $paket->deskripsi }}</p>
+                    <p class="text-gray">Total Soal: {{ $paket->getTotalSoal() }} | {{ $paket->waktu_ujian }} menit</p>
+                </div>
+                <a href="{{ route('ujian.show', $paket) }}" class="btn btn-primary mt-3">Kerjakan</a>
+            </div>
+        </div>
+        @endforeach
+    </div>
 
 </div>
 @endsection

@@ -9,7 +9,9 @@ use App\Http\Controllers\Admin\SoalController;
 use App\Http\Controllers\Admin\PaketController;
 use App\Http\Controllers\Admin\LaporanController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\MateriAjarController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\SiswaMateriController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,10 +52,16 @@ Route::middleware('auth')->group(function () {
     */
     Route::middleware('role:siswa')->group(function () {
         Route::get('/siswa/dashboard', [DashboardController::class, 'siswa'])->name('siswa.dashboard');
-        
+
         // Profil dan Ganti Password Siswa
         Route::get('/siswa/profile', [SiswaController::class, 'profile'])->name('siswa.profile');
         Route::put('/siswa/profile/update-password', [SiswaController::class, 'updatePassword'])->name('siswa.updatePassword');
+
+        // Materi Ajar Siswa
+        Route::prefix('materi')->name('siswa.materi.')->group(function () {
+            Route::get('/', [SiswaMateriController::class, 'index'])->name('index');
+            Route::get('/{materi}', [SiswaMateriController::class, 'show'])->name('show');
+        });
 
         // Ujian
         Route::prefix('ujian')->name('ujian.')->group(function () {
@@ -86,29 +94,23 @@ Route::middleware('auth')->group(function () {
         Route::get('paket/{paket}/assign-soal', [PaketController::class, 'assignSoal'])->name('paket.assign');
         Route::post('paket/{paket}/save-soal', [PaketController::class, 'saveSoal'])->name('paket.save-soal');
 
+        // Materi Ajar Management (Admin)
+        Route::resource('materi', MateriAjarController::class);
+
         // Laporan
         Route::get('laporan', [LaporanController::class, 'index'])->name('laporan.index');
         Route::get('laporan/export/{type}', [LaporanController::class, 'export'])->name('laporan.export');
-        
-        // Admin Ujian & Leaderboard Management
         Route::delete('ujian/destroy/{id}', [LaporanController::class, 'destroy'])->name('ujian.destroy');
-        // Perbaikan di sini, mengarah ke LaporanController
         Route::delete('leaderboard/reset/{paketId}', [LaporanController::class, 'resetLeaderboard'])->name('leaderboard.reset');
 
         // User Management
         Route::get('users', [UserController::class, 'index'])->name('users.index');
-        
-        // Rute BARU untuk Aksi Massal (Memproses form checkbox)
         Route::post('users/assign-selected', [UserController::class, 'assignPaketSelected'])->name('users.assign-selected');
-
         Route::post('users/{user}/reset-password', [UserController::class, 'resetPassword'])->name('users.reset-password');
         Route::get('users/create', [UserController::class, 'create'])->name('users.create');
         Route::post('users', [UserController::class, 'store'])->name('users.store');
-        
-        // Rute untuk Menugaskan Paket ke Pengguna (Diperbarui untuk menggunakan nama rute: users.assign-paket)
         Route::get('users/{user}/assign-paket', [UserController::class, 'assignPaketForm'])->name('users.assign-paket');
         Route::post('users/{user}/save-assign', [UserController::class, 'saveAssignPaket'])->name('users.save-assign');
-
         Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
     });
 });

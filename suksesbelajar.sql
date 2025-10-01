@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 25 Sep 2025 pada 06.27
+-- Waktu pembuatan: 01 Okt 2025 pada 06.44
 -- Versi server: 8.0.30
 -- Versi PHP: 8.1.10
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `bimbel`
+-- Database: `suksesbelajar`
 --
 
 -- --------------------------------------------------------
@@ -40,6 +40,23 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `materi_ajars`
+--
+
+CREATE TABLE `materi_ajars` (
+  `id` bigint UNSIGNED NOT NULL,
+  `judul` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deskripsi` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `isi_materi` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `file_path` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_published` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `migrations`
 --
 
@@ -54,18 +71,20 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
-(2, '2014_10_12_100000_create_password_reset_tokens_table', 1),
-(3, '2019_08_19_000000_create_failed_jobs_table', 1),
-(4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(5, '2025_09_24_003047_create_roles_table', 1),
-(6, '2025_09_24_003048_create_pakets_table', 1),
-(7, '2025_09_24_003048_create_soals_table', 1),
-(8, '2025_09_24_003049_create_paket_soals_table', 1),
-(9, '2025_09_24_003049_create_ujians_table', 1),
-(10, '2025_09_24_003050_create_ujian_jawabans_table', 1),
-(11, '2025_09_24_003051_add_role_to_users_table', 1),
-(12, '2025_09_24_060748_add_birth_date_to_users_table', 2);
+(11, '2014_10_12_000000_create_users_table', 1),
+(12, '2014_10_12_100000_create_password_reset_tokens_table', 1),
+(13, '2019_08_19_000000_create_failed_jobs_table', 1),
+(14, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(15, '2025_09_24_003047_create_roles_table', 1),
+(16, '2025_09_24_003048_create_pakets_table', 1),
+(17, '2025_09_24_003048_create_soals_table', 1),
+(18, '2025_09_24_003049_create_paket_soals_table', 1),
+(19, '2025_09_24_003049_create_ujians_table', 1),
+(20, '2025_09_24_003050_create_ujian_jawabans_table', 1),
+(21, '2025_09_24_003051_add_role_to_users_table', 1),
+(22, '2025_09_24_060748_add_birth_date_to_users_table', 1),
+(23, '2025_09_28_011957_create_paket_user_table_migration', 1),
+(24, '2025_10_01_090842_create_materi_ajars_table', 2);
 
 -- --------------------------------------------------------
 
@@ -91,7 +110,7 @@ CREATE TABLE `pakets` (
 --
 
 INSERT INTO `pakets` (`id`, `nama_paket`, `deskripsi`, `jumlah_soal_twk`, `jumlah_soal_tiu`, `jumlah_soal_tkp`, `waktu_ujian`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 'Paket 1', '-', 30, 35, 45, 90, 1, '2025-09-23 18:56:21', '2025-09-23 18:56:21');
+(1, 'Paket 1', NULL, 35, 30, 45, 100, 1, '2025-09-30 13:14:48', '2025-09-30 13:14:48');
 
 -- --------------------------------------------------------
 
@@ -113,7 +132,31 @@ CREATE TABLE `paket_soals` (
 --
 
 INSERT INTO `paket_soals` (`id`, `paket_id`, `soal_id`, `urutan`, `created_at`, `updated_at`) VALUES
-(1, 1, 4, NULL, NULL, NULL);
+(1, 1, 1, NULL, NULL, NULL),
+(2, 1, 2, NULL, NULL, NULL),
+(3, 1, 3, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `paket_user`
+--
+
+CREATE TABLE `paket_user` (
+  `id` bigint UNSIGNED NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `paket_id` bigint UNSIGNED NOT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `paket_user`
+--
+
+INSERT INTO `paket_user` (`id`, `user_id`, `paket_id`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 2, 1, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -165,8 +208,8 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `display_name`, `created_at`, `updated_at`) VALUES
-(1, 'siswa', 'Siswa', '2025-09-23 18:36:33', '2025-09-23 18:36:33'),
-(2, 'admin', 'Administrator', '2025-09-23 18:36:33', '2025-09-23 18:36:33');
+(1, 'siswa', 'Siswa', '2025-09-30 12:26:50', '2025-09-30 12:26:50'),
+(2, 'admin', 'Administrator', '2025-09-30 12:26:50', '2025-09-30 12:26:50');
 
 -- --------------------------------------------------------
 
@@ -200,7 +243,9 @@ CREATE TABLE `soals` (
 --
 
 INSERT INTO `soals` (`id`, `kategori`, `pertanyaan`, `pilihan_a`, `pilihan_b`, `pilihan_c`, `pilihan_d`, `pilihan_e`, `kunci_jawaban`, `skor_a`, `skor_b`, `skor_c`, `skor_d`, `skor_e`, `pembahasan`, `is_active`, `created_at`, `updated_at`) VALUES
-(4, 'TWK', 'a', '1', '2', '3', '4', '5', 'A', 5, 0, 0, 0, 0, 'Perubahan', 1, '2025-09-23 19:14:38', '2025-09-24 17:32:11');
+(1, 'TWK', 'Pancasila sebagai dasar negara Indonesia ditetapkan pada tanggal?', '17 Agustus 1945', '18 Agustus 1945', '1 Juni 1945', '22 Juni 1945', '29 Mei 1945', 'B', 0, 0, 0, 0, 0, 'Pancasila ditetapkan sebagai dasar negara pada tanggal 18 Agustus 1945.', 1, '2025-09-30 12:26:50', '2025-09-30 12:26:50'),
+(2, 'TIU', 'Jika 2x + 3 = 11, maka nilai x adalah?', '3', '4', '5', '6', '7', 'B', 0, 0, 0, 0, 0, '2x + 3 = 11, maka 2x = 8, sehingga x = 4', 1, '2025-09-30 12:26:50', '2025-09-30 12:26:50'),
+(3, 'TKP', 'Ketika menghadapi tugas yang sulit, sikap yang sebaiknya Anda lakukan adalah?', 'Menyerah dan meminta bantuan orang lain', 'Mengerjakan dengan asal-asalan', 'Berusaha keras dan mencari solusi', 'Menunda sampai ada yang membantu', 'Mengeluh kepada atasan', 'C', 1, 2, 5, 3, 1, NULL, 1, '2025-09-30 12:26:50', '2025-09-30 12:26:50');
 
 -- --------------------------------------------------------
 
@@ -228,7 +273,7 @@ CREATE TABLE `ujians` (
 --
 
 INSERT INTO `ujians` (`id`, `user_id`, `paket_id`, `mulai_ujian`, `selesai_ujian`, `skor_twk`, `skor_tiu`, `skor_tkp`, `total_skor`, `status`, `created_at`, `updated_at`) VALUES
-(8, 2, 1, '2025-09-24 17:25:18', '2025-09-24 17:25:24', 0, 0, 0, 0, 'finished', '2025-09-24 17:25:18', '2025-09-24 17:25:24');
+(1, 2, 1, '2025-09-30 13:16:48', '2025-09-30 13:17:10', 0, 5, 5, 10, 'finished', '2025-09-30 13:16:48', '2025-09-30 13:17:10');
 
 -- --------------------------------------------------------
 
@@ -252,7 +297,9 @@ CREATE TABLE `ujian_jawabans` (
 --
 
 INSERT INTO `ujian_jawabans` (`id`, `ujian_id`, `soal_id`, `jawaban`, `is_correct`, `skor`, `created_at`, `updated_at`) VALUES
-(12, 8, 4, 'B', 0, 0, '2025-09-24 17:25:18', '2025-09-24 17:25:23');
+(1, 1, 1, 'C', 0, 0, '2025-09-30 13:16:48', '2025-09-30 13:16:57'),
+(2, 1, 2, 'B', 1, 5, '2025-09-30 13:16:48', '2025-09-30 13:17:03'),
+(3, 1, 3, 'C', 0, 5, '2025-09-30 13:16:48', '2025-09-30 13:17:09');
 
 -- --------------------------------------------------------
 
@@ -262,27 +309,26 @@ INSERT INTO `ujian_jawabans` (`id`, `ujian_id`, `soal_id`, `jawaban`, `is_correc
 
 CREATE TABLE `users` (
   `id` bigint UNSIGNED NOT NULL,
+  `role_id` bigint UNSIGNED NOT NULL DEFAULT '1',
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `birth_date` date DEFAULT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `birthdate` date DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `role_id` bigint UNSIGNED NOT NULL DEFAULT '1',
-  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `birth_date` date DEFAULT NULL,
-  `birthdate` date DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data untuk tabel `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `role_id`, `phone`, `birth_date`, `birthdate`) VALUES
-(1, 'Administrator', 'admin@bimbel.com', NULL, '$2y$12$DlvTqfqVryA2cmir5geHfez6/RJH6eEFQdWPEHV7E59v0aY3bGj9e', NULL, '2025-09-23 18:36:34', '2025-09-23 18:36:34', 2, NULL, NULL, NULL),
-(2, 'Siswa Test', 'siswa@test.com', NULL, '$2y$12$e7geCoCWkmYwOvZ1d58Nf.ZSvlEHQxn/04yc/Cl1HRlRP59H.uTGm', NULL, '2025-09-23 18:36:34', '2025-09-23 18:36:34', 1, NULL, NULL, NULL),
-(4, 'Alam', 'alam@gmail.com', NULL, '$2y$12$FaFmLY.CEQGoDuorwYWcRuEayo6DgjJmd/gM7d8ljwlNczG4DXOlW', NULL, '2025-09-24 00:51:42', '2025-09-24 00:51:42', 2, NULL, NULL, NULL);
+INSERT INTO `users` (`id`, `role_id`, `name`, `phone`, `birth_date`, `email`, `birthdate`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 2, 'Administrator', NULL, NULL, 'admin@bimbel.com', NULL, NULL, '$2y$12$hsU4F./El664/T3BH7lApe5VY75/4CUk5DdSZx6aqtnqzcJ2UBeUS', NULL, '2025-09-30 12:26:50', '2025-09-30 12:26:50'),
+(2, 1, 'Siswa Test', NULL, NULL, 'siswa@test.com', NULL, NULL, '$2y$12$fYygh2TSn6hA9aV6MVbisOpP1VvRnROrB3p32joOVhala2bS60hS.', NULL, '2025-09-30 12:26:50', '2025-09-30 12:26:50');
 
 --
 -- Indexes for dumped tables
@@ -294,6 +340,12 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indeks untuk tabel `materi_ajars`
+--
+ALTER TABLE `materi_ajars`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeks untuk tabel `migrations`
@@ -314,6 +366,14 @@ ALTER TABLE `paket_soals`
   ADD PRIMARY KEY (`id`),
   ADD KEY `paket_soals_paket_id_foreign` (`paket_id`),
   ADD KEY `paket_soals_soal_id_foreign` (`soal_id`);
+
+--
+-- Indeks untuk tabel `paket_user`
+--
+ALTER TABLE `paket_user`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `paket_user_user_id_paket_id_unique` (`user_id`,`paket_id`),
+  ADD KEY `paket_user_paket_id_foreign` (`paket_id`);
 
 --
 -- Indeks untuk tabel `password_reset_tokens`
@@ -364,6 +424,7 @@ ALTER TABLE `ujian_jawabans`
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`),
+  ADD UNIQUE KEY `users_phone_unique` (`phone`),
   ADD KEY `users_role_id_foreign` (`role_id`);
 
 --
@@ -377,10 +438,16 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT untuk tabel `materi_ajars`
+--
+ALTER TABLE `materi_ajars`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT untuk tabel `pakets`
@@ -392,7 +459,13 @@ ALTER TABLE `pakets`
 -- AUTO_INCREMENT untuk tabel `paket_soals`
 --
 ALTER TABLE `paket_soals`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT untuk tabel `paket_user`
+--
+ALTER TABLE `paket_user`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `personal_access_tokens`
@@ -410,25 +483,25 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT untuk tabel `soals`
 --
 ALTER TABLE `soals`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `ujians`
 --
 ALTER TABLE `ujians`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `ujian_jawabans`
 --
 ALTER TABLE `ujian_jawabans`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -440,6 +513,13 @@ ALTER TABLE `users`
 ALTER TABLE `paket_soals`
   ADD CONSTRAINT `paket_soals_paket_id_foreign` FOREIGN KEY (`paket_id`) REFERENCES `pakets` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `paket_soals_soal_id_foreign` FOREIGN KEY (`soal_id`) REFERENCES `soals` (`id`) ON DELETE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `paket_user`
+--
+ALTER TABLE `paket_user`
+  ADD CONSTRAINT `paket_user_paket_id_foreign` FOREIGN KEY (`paket_id`) REFERENCES `pakets` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `paket_user_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `ujians`
