@@ -139,12 +139,13 @@ body {
             </div>
         </div>
         <div class="col-md-4 mb-3">
-            <div class="stat-card">
+        <div class="stat-card">
                 <div class="stat-value">
-                    {{ $riwayatUjian->avg('total_skor') ? number_format($riwayatUjian->avg('total_skor'), 1) : '-' }}
+                    {{ $riwayatUjian->avg('total_skor') ? number_format($riwayatUjian->avg('total_skor'), 0) : '-' }}
                 </div>
                 <div class="stat-label">Skor Rata-rata</div>
             </div>
+        </div>
         </div>
         <div class="col-md-4 mb-3">
             <div class="stat-card">
